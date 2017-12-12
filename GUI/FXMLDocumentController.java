@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import Data.AutoQuery;
+import Data.Data;
+import Data.Datenbank;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -20,11 +24,9 @@ import javafx.scene.control.ListView;
  * @author GPope
  */
 public class FXMLDocumentController implements Initializable {
-    
 
-    @FXML
-    private Button button;
-    
+    private Data data;
+
     @FXML
     private ListView<String> list1;
     @FXML
@@ -32,27 +34,54 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ListView<String> list3;
     @FXML
-    private Button button1;
-    @FXML
-    private Button button11;
-    @FXML
     private Button button12;
     @FXML
-    private Button button121;
-    
+    private Button carEdit, carb, cari;
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
+    private Button buttonNewCustomer;
+    @FXML
+    private Button buttonNewContract;
+    @FXML
+    private Button carDelete;
+
+    @FXML
+    private void handleButtonAction(ActionEvent event) throws IOException {
+        if (event.getSource() == button12) {
+            new NewCarStage();
+        } else if (event.getSource() == buttonNewCustomer) {
+            new NewCustomerStage();
+        } else if (event.getSource() == buttonNewContract) {
+            new NewContractStage();
+        } else if (event.getSource() == carDelete) {
+            int i = list1.getSelectionModel().getSelectedIndex();
+            new AutoQuery().delete(data.getKennzeichen(i, false));
+            data.fullUpdate();
+        } else if (event.getSource() == carEdit) {
+            int i = list1.getSelectionModel().getSelectedIndex();
+            new EditCarStage(data.getAuto(i));
+            data.fullUpdate();
+        } else if (event.getSource() == carb) {
+            new CarOutputStage();
+        } else if (event.getSource() == cari) {
+            new CarInputStage();
+        }
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> data1 = FXCollections.observableArrayList("Audi A4","VW Polo","Ford Fiesta","Fiat Punto","Honda Accord","VW Golf","Mercedes C-Klasse","Opel Corsa");
-        ObservableList<String> data2 = FXCollections.observableArrayList("Max Mustermann","Claire Grube","Hans Hansen","Alfonso von Stein","Anna Alonso","Lena Weber","Günther von Günthingen","Lilly Putt");
-        ObservableList<String> data3 = FXCollections.observableArrayList("0648154588","0516135181","0279568436","8974315936","9785642030","0230104250");
-        list1.setItems(data1);
-        list2.setItems(data2);
-        list3.setItems(data3);
-    }    
-    
+        data = FXMLMain.data;
+        data.setfxmlDC(this);
+        updateList();
+    }
+
+    public void updateList() {
+        ObservableList<String> daten = FXCollections.observableArrayList(data.getText(Datenbank.AUTO, false));
+        list1.setItems(daten);
+
+        daten = FXCollections.observableArrayList(data.getText(Datenbank.KUNDE, false));
+        list2.setItems(daten);
+
+        daten = FXCollections.observableArrayList(data.getText(Datenbank.VERTRAG, false));
+        list3.setItems(daten);
+    }
 }

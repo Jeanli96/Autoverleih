@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="178.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CarInputController">
+   <children>
+      <Text layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VertragsID:" />
+      <TextField fx:id="vertrag" layoutX="120.0" layoutY="17.0" prefHeight="25.0" prefWidth="194.0" />
+      <Button fx:id="searchVertrag" layoutX="314.0" layoutY="17.0" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="23.0" />
+      <Text layoutX="14.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auto Kennzeichen:" />
+      <TextField fx:id="kennzeichen" layoutX="120.0" layoutY="51.0" prefHeight="25.0" prefWidth="217.0" />
+      <Text layoutX="14.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rückgabetermin:" />
+      <Text layoutX="14.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heutiges Datum:" />
+      <Text fx:id="abtermin" layoutX="120.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="datum" layoutX="120.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Button fx:id="bestaetigen" layoutX="31.0" layoutY="132.0" mnemonicParsing="false" onAction="#buttonBestaetigen" prefHeight="36.0" prefWidth="129.0" text="Bestätigen" />
+      <Button fx:id="abbruch" layoutX="184.0" layoutY="132.0" mnemonicParsing="false" onAction="#buttonAbbruch" prefHeight="36.0" prefWidth="129.0" text="Abbruch" />
+   </children>
+</AnchorPane>

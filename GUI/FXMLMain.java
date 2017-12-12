@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Data.Data;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,16 @@ import javafx.stage.Stage;
  */
 public class FXMLMain extends Application {
     
+    /**
+     * @param args the command line arguments
+     */
+    
+    public static Data data = new Data();
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -26,13 +37,5 @@ public class FXMLMain extends Application {
         
         stage.setScene(scene);
         stage.show();
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
+    }  
 }

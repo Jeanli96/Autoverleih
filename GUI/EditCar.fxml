@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="292.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EditCarController">
+   <children>
+      <SplitPane dividerPositions="0.7945205479452054" orientation="VERTICAL" prefHeight="294.0" prefWidth="360.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="153.0" prefWidth="560.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="44.0" text="Marke:" />
+                  <Label layoutX="14.0" layoutY="14.0" text="Kennzeichen:" />
+                  <Label layoutX="14.0" layoutY="75.0" text="Modell:" />
+                  <Label layoutX="14.0" layoutY="104.0" text="Fahrzeugtyp:" />
+                  <Label layoutX="14.0" layoutY="134.0" text="Sitzplätze:" />
+                  <Label layoutX="15.0" layoutY="164.0" text="Farbe:" />
+                  <Label layoutX="14.0" layoutY="194.0" text="Tagessatz:" />
+                  <TextField fx:id="kennzeichen" editable="false" layoutX="100.0" layoutY="10.0" prefHeight="25.0" prefWidth="234.0" />
+                  <TextField fx:id="marke" layoutX="100.0" layoutY="40.0" prefHeight="25.0" prefWidth="234.0" />
+                  <TextField fx:id="modell" layoutX="100.0" layoutY="70.0" prefHeight="25.0" prefWidth="234.0" />
+                  <TextField fx:id="sitzplaetze" layoutX="100.0" layoutY="130.0" prefHeight="25.0" prefWidth="234.0" />
+                  <TextField fx:id="farbe" layoutX="100.0" layoutY="160.0" prefHeight="25.0" prefWidth="234.0" />
+                  <TextField fx:id="tagessatz" layoutX="100.0" layoutY="190.0" prefHeight="25.0" prefWidth="234.0" />
+                  <ChoiceBox fx:id="fahrzeugtyp" layoutX="100.0" layoutY="100.0" prefHeight="25.0" prefWidth="234.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="81.0" prefWidth="358.0">
+               <children>
+                  <Button fx:id="bearbeiten" layoutX="23.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonBearbeiten" prefHeight="36.0" prefWidth="129.0" text="Ändern" />
+                  <Button fx:id="abbruch" layoutX="204.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonAbbrechen" prefHeight="36.0" prefWidth="129.0" text="Abbruch" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

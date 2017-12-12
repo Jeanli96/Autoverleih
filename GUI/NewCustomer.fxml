@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="354.0" prefWidth="424.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.NewCustomerController">
+   <children>
+      <SplitPane dividerPositions="0.8028169014084507" layoutX="-2.0" orientation="VERTICAL" prefHeight="357.0" prefWidth="426.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Name:" />
+                  <TextField fx:id="name" layoutX="170.0" layoutY="10.0" prefHeight="25.0" prefWidth="236.0" />
+                  <TextField fx:id="vorname" layoutX="170.0" layoutY="40.0" prefHeight="25.0" prefWidth="236.0" />
+                  <TextField fx:id="plz" layoutX="170.0" layoutY="70.0" prefHeight="25.0" prefWidth="236.0" />
+                  <TextField fx:id="wohnort" layoutX="170.0" layoutY="100.0" prefHeight="25.0" prefWidth="236.0" />
+                  <TextField fx:id="strasse" layoutX="170.0" layoutY="130.0" prefHeight="25.0" prefWidth="236.0" />
+                  <TextField fx:id="hausnummer" layoutX="170.0" layoutY="160.0" prefHeight="25.0" prefWidth="236.0" />
+                  <TextField fx:id="telefonnummer" layoutX="170.0" layoutY="190.0" prefHeight="25.0" prefWidth="236.0" />
+                  <TextField fx:id="geburtsdatum" layoutX="170.0" layoutY="220.0" prefHeight="25.0" prefWidth="236.0" />
+                  <TextField fx:id="fklasse" layoutX="170.0" layoutY="250.0" prefHeight="25.0" prefWidth="236.0" />
+                  <Label layoutX="14.0" layoutY="44.0" text="Vorname:" />
+                  <Label layoutX="14.0" layoutY="74.0" text="Postleitzahl:" />
+                  <Label layoutX="14.0" layoutY="104.0" text="Wohnort:" />
+                  <Label layoutX="14.0" layoutY="134.0" text="Straße:" />
+                  <Label layoutX="14.0" layoutY="164.0" text="Hausnummer:" />
+                  <Label layoutX="14.0" layoutY="194.0" text="Telefonnummer:" />
+                  <Label layoutX="14.0" layoutY="224.0" text="Geburtsdatum:" />
+                  <Label layoutX="14.0" layoutY="254.0" text="Führerscheinklasse/n:" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Button fx:id="anlegen" layoutX="35.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonAnlegen" prefHeight="36.0" prefWidth="129.0" text="Anlegen" />
+                  <Button fx:id="abbruch" layoutX="254.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonAbbruch" prefHeight="36.0" prefWidth="129.0" text="Abbruch" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

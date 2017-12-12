@@ -1,259 +1,256 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="617.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLDocumentController">
-    <children>
-      <SplitPane dividerPositions="0.1" orientation="VERTICAL" prefHeight="617.0" prefWidth="727.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <Button fx:id="button" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="82.0" text="Login" />
-                  <Button fx:id="button1" layoutX="96.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Fahrzeug eingang" />
-                  <Button fx:id="button11" layoutX="225.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Fahrzeug ausgang" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <TabPane layoutX="15.0" layoutY="13.0" prefHeight="525.0" prefWidth="695.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                      <Tab text="Autoliste">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <SplitPane dividerPositions="0.7" layoutX="10.0" layoutY="10.0" prefHeight="476.0" prefWidth="675.0">
-                                      <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                             <children>
-                                                <ScrollPane prefHeight="474.0" prefWidth="468.0">
-                                                  <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="467.0">
-                                                         <children>
-                                                            <ListView fx:id="list1" layoutX="81.0" layoutY="43.0" prefHeight="473.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                         </children>
-                                                      </AnchorPane>
-                                                  </content>
-                                                </ScrollPane>
-                                             </children>
-                                          </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                             <children>
-                                                <ScrollPane prefHeight="474.0" prefWidth="199.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                  <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="200.0">
-                                                         <children>
-                                                            <AnchorPane prefHeight="95.0" prefWidth="176.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="186.0" text="Marke" />
-                                                                  <CheckBox layoutY="17.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Audi" />
-                                                                  <CheckBox layoutX="82.0" layoutY="17.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Fiat" />
-                                                                  <CheckBox layoutY="34.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Ford" />
-                                                                  <CheckBox layoutX="82.0" layoutY="34.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Honda" />
-                                                                  <CheckBox layoutY="51.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Mercedes" />
-                                                                  <CheckBox layoutX="82.0" layoutY="51.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Opel" />
-                                                                  <CheckBox layoutY="68.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="VW" />
-                                                                  <ScrollBar layoutX="165.0" layoutY="5.0" orientation="VERTICAL" prefHeight="85.0" prefWidth="14.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Typ" />
-                                                                  <CheckBox layoutX="14.0" layoutY="17.0" mnemonicParsing="false" text="Kleinwagen" />
-                                                                  <CheckBox layoutX="14.0" layoutY="39.0" mnemonicParsing="false" text="Kombi" />
-                                                                  <CheckBox layoutX="14.0" layoutY="64.0" mnemonicParsing="false" text="Limousine" />
-                                                                  <CheckBox layoutX="100.0" layoutY="17.0" mnemonicParsing="false" text="Van" />
-                                                                  <CheckBox layoutX="100.0" layoutY="41.0" mnemonicParsing="false" text="Transporter" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="143.0" prefHeight="47.4" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Tagessatz" />
-                                                                  <CheckBox layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="Aufsteigend" />
-                                                                  <CheckBox layoutX="100.0" layoutY="16.0" mnemonicParsing="false" text="Absteigend" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="95.0" prefHeight="47.4" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Sitzplätze" />
-                                                                  <CheckBox layoutX="14.0" layoutY="17.0" mnemonicParsing="false" text="2" />
-                                                                  <CheckBox layoutX="72.0" layoutY="17.0" mnemonicParsing="false" text="4" />
-                                                                  <CheckBox layoutX="137.0" layoutY="17.0" mnemonicParsing="false" text="6" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="355.0" prefHeight="166.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <Button fx:id="button12" layoutX="36.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Neu anlegen" />
-                                                                  <Button fx:id="button121" layoutX="36.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Bearbeiten" />
-                                                                  <Button layoutX="36.0" layoutY="98.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" text="Löschen" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="285.0" prefHeight="47.4" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Verfügbarkeit" />
-                                                                  <CheckBox layoutX="14.0" layoutY="16.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="39.0" text="Ja" />
-                                                                  <CheckBox layoutX="53.0" layoutY="16.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="76.0" text="reserviert" />
-                                                                  <CheckBox layoutX="129.0" layoutY="16.0" mnemonicParsing="false" text="Nein" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </children>
-                                                      </AnchorPane>
-                                                  </content>
-                                                </ScrollPane>
-                                             </children></AnchorPane>
-                                      </items>
-                                    </SplitPane>
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                      <Tab text="Kundenliste">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <SplitPane dividerPositions="0.7" prefHeight="476.0" prefWidth="675.0">
-                                       <items>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                             <children>
-                                                <ScrollPane prefHeight="474.0" prefWidth="468.0">
-                                                   <content>
-                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="467.0">
-                                                         <children>
-                                                            <ListView fx:id="list2" layoutX="72.0" layoutY="37.0" prefHeight="473.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                         </children>
-                                                      </AnchorPane>
-                                                   </content>
-                                                </ScrollPane>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                             <children>
-                                                <ScrollPane prefHeight="474.0" prefWidth="199.0">
-                                                   <content>
-                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="200.0">
-                                                         <children>
-                                                            <AnchorPane prefHeight="94.8" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Vorname" />
-                                                                  <TextField layoutX="26.0" layoutY="35.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="285.0" prefHeight="94.8" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Kundennummer" />
-                                                                  <TextField layoutX="26.0" layoutY="35.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Kundenummer" />
-                                                                  <TextField layoutX="26.0" layoutY="35.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="95.0" prefHeight="94.8" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Nachname" />
-                                                                  <TextField layoutX="26.0" layoutY="35.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="380.0" prefHeight="147.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <Button layoutX="36.0" layoutY="33.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" text="Anlegen" />
-                                                                  <Button layoutX="36.0" layoutY="85.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" text="Bearbeiten" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </children>
-                                                      </AnchorPane>
-                                                   </content>
-                                                </ScrollPane>
-                                             </children></AnchorPane>
-                                       </items>
-                                    </SplitPane>
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                        <Tab text="Vertragsliste">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <SplitPane dividerPositions="0.7" prefHeight="476.0" prefWidth="675.0">
-                                       <items>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                             <children>
-                                                <ScrollPane prefHeight="474.0" prefWidth="468.0">
-                                                   <content>
-                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="468.0">
-                                                         <children>
-                                                            <ListView fx:id="list3" layoutX="7.0" layoutY="54.0" prefHeight="473.0" prefWidth="468.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                         </children>
-                                                      </AnchorPane>
-                                                   </content>
-                                                </ScrollPane>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                             <children>
-                                                <ScrollPane prefHeight="474.0" prefWidth="199.0">
-                                                   <content>
-                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="200.0">
-                                                         <children>
-                                                            <AnchorPane prefHeight="94.8" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Vertragsnummer" />
-                                                                  <TextField layoutX="26.0" layoutY="35.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="285.0" prefHeight="94.8" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Placeholder" />
-                                                                  <TextField layoutX="26.0" layoutY="35.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Abgeschlossen" />
-                                                                  <RadioButton layoutX="22.0" layoutY="25.0" mnemonicParsing="false" selected="true" text="Ja">
-                                                                     <toggleGroup>
-                                                                        <ToggleGroup fx:id="Abgeschlossen" />
-                                                                     </toggleGroup>
-                                                                  </RadioButton>
-                                                                  <RadioButton layoutX="22.0" layoutY="48.0" mnemonicParsing="false" text="Nein" toggleGroup="$Abgeschlossen" />
-                                                                  <RadioButton layoutX="22.0" layoutY="73.0" mnemonicParsing="false" text="Laufend" toggleGroup="$Abgeschlossen" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="95.0" prefHeight="94.8" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Umsatz" />
-                                                                  <TextField layoutX="26.0" layoutY="35.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane layoutY="380.0" prefHeight="94.8" prefWidth="200.0">
-                                                               <children>
-                                                                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Placeholder" />
-                                                                  <TextField layoutX="26.0" layoutY="35.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </children>
-                                                      </AnchorPane>
-                                                   </content>
-                                                </ScrollPane>
-                                             </children></AnchorPane>
-                                       </items>
-                                    </SplitPane>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </Tab>
-                    </tabs>
-                  </TabPane>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-    </children>
+  <children>
+    <SplitPane dividerPositions="0.1008130081300813" orientation="VERTICAL" prefHeight="617.0" prefWidth="727.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <Button fx:id="button" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="82.0" text="Login" />
+            <Button fx:id="cari" layoutX="96.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="151.0" text="Fahrzeug Rücknahme" />
+            <Button fx:id="carb" layoutX="247.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="151.0" text="Fahrzeug Ausgang" />
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <TabPane layoutX="15.0" layoutY="13.0" prefHeight="525.0" prefWidth="695.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Autoliste">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <SplitPane dividerPositions="0.6998514115898959" layoutX="10.0" layoutY="10.0" prefHeight="476.0" prefWidth="675.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                              <children>
+                                <ScrollPane prefHeight="474.0" prefWidth="468.0">
+                                  <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="467.0">
+                                      <children>
+                                        <ListView fx:id="list1" prefHeight="473.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.0" />
+                                      </children>
+                                    </AnchorPane>
+                                  </content>
+                                </ScrollPane>
+                              </children>
+                            </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                              <children>
+                                <ScrollPane prefHeight="474.0" prefWidth="199.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                  <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="200.0">
+                                      <children>
+                                        <AnchorPane prefHeight="95.0" prefWidth="176.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="186.0" text="Marke" />
+                                            <CheckBox layoutY="17.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Audi" />
+                                            <CheckBox layoutX="82.0" layoutY="17.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Fiat" />
+                                            <CheckBox layoutY="34.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Ford" />
+                                            <CheckBox layoutX="82.0" layoutY="34.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Honda" />
+                                            <CheckBox layoutY="51.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Mercedes" />
+                                            <CheckBox layoutX="82.0" layoutY="51.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Opel" />
+                                            <CheckBox layoutY="68.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="VW" />
+                                            <ScrollBar layoutX="165.0" layoutY="5.0" orientation="VERTICAL" prefHeight="85.0" prefWidth="14.0" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Typ" />
+                                            <CheckBox layoutX="14.0" layoutY="17.0" mnemonicParsing="false" text="Kleinwagen" />
+                                            <CheckBox layoutX="14.0" layoutY="39.0" mnemonicParsing="false" text="Kombi" />
+                                            <CheckBox layoutX="14.0" layoutY="64.0" mnemonicParsing="false" text="Limousine" />
+                                            <CheckBox layoutX="100.0" layoutY="17.0" mnemonicParsing="false" text="Van" />
+                                            <CheckBox layoutX="100.0" layoutY="41.0" mnemonicParsing="false" text="Transporter" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="143.0" prefHeight="47.4" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Tagessatz" />
+                                            <CheckBox layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="Aufsteigend" />
+                                            <CheckBox layoutX="100.0" layoutY="16.0" mnemonicParsing="false" text="Absteigend" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="95.0" prefHeight="47.4" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Sitzplätze" />
+                                            <CheckBox layoutX="14.0" layoutY="17.0" mnemonicParsing="false" text="2" />
+                                            <CheckBox layoutX="72.0" layoutY="17.0" mnemonicParsing="false" text="4" />
+                                            <CheckBox layoutX="137.0" layoutY="17.0" mnemonicParsing="false" text="6" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="333.0" prefHeight="93.0" prefWidth="200.0">
+                                          <children>
+                                            <Button fx:id="button12" layoutX="36.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Neu anlegen" />
+                                            <Button fx:id="carEdit" layoutX="36.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Bearbeiten" />
+                                            <Button fx:id="carDelete" layoutX="36.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Löschen" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="285.0" prefHeight="47.4" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Verfügbarkeit" />
+                                            <CheckBox layoutX="14.0" layoutY="16.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="39.0" text="Ja" />
+                                            <CheckBox layoutX="53.0" layoutY="16.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="76.0" text="reserviert" />
+                                            <CheckBox layoutX="129.0" layoutY="16.0" mnemonicParsing="false" text="Nein" />
+                                          </children>
+                                        </AnchorPane>
+                                      </children>
+                                    </AnchorPane>
+                                  </content>
+                                </ScrollPane>
+                              </children>
+                            </AnchorPane>
+                          </items>
+                        </SplitPane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Kundenliste">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <SplitPane dividerPositions="0.6998514115898959" layoutX="10.0" layoutY="10.0" prefHeight="476.0" prefWidth="675.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                              <children>
+                                <ScrollPane prefHeight="474.0" prefWidth="468.0">
+                                  <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="467.0">
+                                      <children>
+                                        <ListView fx:id="list2" prefHeight="473.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.0" />
+                                      </children>
+                                    </AnchorPane>
+                                  </content>
+                                </ScrollPane>
+                              </children>
+                            </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                              <children>
+                                <ScrollPane prefHeight="474.0" prefWidth="199.0">
+                                  <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="200.0">
+                                      <children>
+                                        <AnchorPane prefHeight="94.8" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Vorname" />
+                                            <TextField layoutX="26.0" layoutY="35.0" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="285.0" prefHeight="94.8" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Kundennummer" />
+                                            <TextField layoutX="26.0" layoutY="35.0" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Kundenummer" />
+                                            <TextField layoutX="26.0" layoutY="35.0" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="95.0" prefHeight="94.8" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Nachname" />
+                                            <TextField layoutX="26.0" layoutY="35.0" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="333.0" prefHeight="147.0" prefWidth="200.0">
+                                          <children>
+                                            <Button fx:id="buttonNewCustomer" layoutX="36.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Neu anlegen" />
+                                            <Button layoutX="36.0" layoutY="85.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" text="Bearbeiten" />
+                                          </children>
+                                        </AnchorPane>
+                                      </children>
+                                    </AnchorPane>
+                                  </content>
+                                </ScrollPane>
+                              </children>
+                            </AnchorPane>
+                          </items>
+                        </SplitPane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Vertragsliste">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <SplitPane dividerPositions="0.6998514115898959" layoutX="10.0" layoutY="10.0" prefHeight="476.0" prefWidth="675.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                              <children>
+                                <ScrollPane prefHeight="474.0" prefWidth="468.0">
+                                  <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="468.0">
+                                      <children>
+                                        <ListView fx:id="list3" prefHeight="473.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                      </children>
+                                    </AnchorPane>
+                                  </content>
+                                </ScrollPane>
+                              </children>
+                            </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                              <children>
+                                <ScrollPane prefHeight="474.0" prefWidth="199.0">
+                                  <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="200.0">
+                                      <children>
+                                        <AnchorPane prefHeight="94.8" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Vertragsnummer" />
+                                            <TextField layoutX="26.0" layoutY="35.0" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="285.0" prefHeight="94.8" prefWidth="200.0">
+                                          <children>
+                                            <Button fx:id="buttonNewContract" layoutX="36.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Neu anlegen" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Abgeschlossen" />
+                                            <RadioButton layoutX="22.0" layoutY="25.0" mnemonicParsing="false" selected="true" text="Ja">
+                                              <toggleGroup>
+                                                <ToggleGroup fx:id="Abgeschlossen" />
+                                              </toggleGroup>
+                                            </RadioButton>
+                                            <RadioButton layoutX="22.0" layoutY="48.0" mnemonicParsing="false" text="Nein" toggleGroup="$Abgeschlossen" />
+                                            <RadioButton layoutX="22.0" layoutY="73.0" mnemonicParsing="false" text="Laufend" toggleGroup="$Abgeschlossen" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="95.0" prefHeight="94.8" prefWidth="200.0">
+                                          <children>
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Umsatz" />
+                                            <TextField layoutX="26.0" layoutY="35.0" />
+                                          </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="380.0" prefHeight="94.8" prefWidth="200.0" />
+                                      </children>
+                                    </AnchorPane>
+                                  </content>
+                                </ScrollPane>
+                              </children>
+                            </AnchorPane>
+                          </items>
+                        </SplitPane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
 </AnchorPane>
