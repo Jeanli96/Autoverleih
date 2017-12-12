@@ -1,0 +1,108 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Data;
+
+/**
+ *
+ * @author kevin
+ */
+public class Kunde {
+
+    private int kdID;
+    private String name;
+    private String vorname;
+    private String plz;
+    private String strasse;
+    private int hausnummer;
+    private String wohnort;
+    private String telefonnummer;
+    private String geburtsdatum;
+    private String fKlasse;
+
+    public Kunde(int kdID, String name, String vorname, String plz, String strasse, int hausnummer, String wohnort, String telefonnummer, String geburtsdatum, String fKlasse) {
+        this.kdID = kdID;
+        this.name = name;
+        this.vorname = vorname;
+        this.plz = plz;
+        this.strasse = strasse;
+        this.hausnummer = hausnummer;
+        this.wohnort = wohnort;
+        this.telefonnummer = telefonnummer;
+        this.geburtsdatum = geburtsdatum;
+        this.fKlasse = fKlasse;
+    }
+
+    @Override
+    public String toString() {
+        String text = "KundenID: " + kdID + "\n"
+                + "Name: " + name + "\n"
+                + "Vorname: " + vorname + "\n"
+                + "PLZ: " + plz + "\n"
+                + "Straße: " + strasse + "\n"
+                + "Hausnummer: " + hausnummer + "\n"
+                + "Wohnort: " + wohnort + "\n"
+                + "Telefonnummer: " + telefonnummer + "\n"
+                + "Geburtsdatum: " + geburtsdatum + "\n"
+                + "Führerscheinklasse: " + fKlasse + "\n";
+
+        return text;
+    }
+    
+    public String anlegen() {
+        String text = "'" + kdID + "',"
+                + "'" + name + "',"
+                + "'" + vorname + "',"
+                + "'" + plz + "',"
+                + "'" + strasse + "',"
+                + "'" + hausnummer + "',"
+                + "'" + wohnort + "',"
+                + "'" + telefonnummer + "',"
+                + "'" + geburtsdatum + "',"
+                + "'" + fKlasse + "'";
+
+        return text;
+    }
+
+    public int getKdID() {
+        return kdID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public String getPlz() {
+        return plz;
+    }
+
+    public String getStrasse() {
+        return strasse;
+    }
+
+    public int getHausnummer() {
+        return hausnummer;
+    }
+
+    public String getWohnort() {
+        return wohnort;
+    }
+
+    public String getTelefonnummer() {
+        return telefonnummer;
+    }
+
+    public String getGeburtsdaaum() {
+        return geburtsdatum;
+    }
+
+    public String getFKlasse() {
+        return fKlasse;
+    }
+}
