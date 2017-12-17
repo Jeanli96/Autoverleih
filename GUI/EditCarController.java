@@ -9,12 +9,9 @@ import Data.Auto;
 import Data.AutoQuery;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -46,20 +43,11 @@ public class EditCarController implements Initializable {
     private TextField farbe;
     @FXML
     private TextField tagessatz;
-
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        EditCarStage stage = EditCarStage.stage;
-        sAuto = stage.getAuto();
-
-        kennzeichen.setText(sAuto.getKennzeichen());
-        marke.setText(sAuto.getMarke());
-        modell.setText(sAuto.getModell());
-        fahrzeugtyp.setText(sAuto.getTyp());
-        sitzplaetze.setText("" + sAuto.getSitzplaetze());
-        farbe.setText(sAuto.getFarbe());
-        tagessatz.setText("" + sAuto.getTagessatz());        
+        
+        //EditCarStage stage = EditCarStage.stage;          
     }
     
     @FXML
@@ -76,5 +64,18 @@ public class EditCarController implements Initializable {
     private void buttonAbbrechen() {
         Stage stage = (Stage) abbruch.getScene().getWindow();
         stage.close();
+    }
+    
+    public void setStage (Auto selectedAuto)
+    {        
+        sAuto = selectedAuto;
+
+        kennzeichen.setText(sAuto.getKennzeichen());
+        marke.setText(sAuto.getMarke());
+        modell.setText(sAuto.getModell());
+        fahrzeugtyp.setText(sAuto.getTyp());
+        sitzplaetze.setText("" + sAuto.getSitzplaetze());
+        farbe.setText(sAuto.getFarbe());
+        tagessatz.setText("" + sAuto.getTagessatz());
     }
 }
