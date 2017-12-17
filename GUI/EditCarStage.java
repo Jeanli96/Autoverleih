@@ -8,8 +8,8 @@ package GUI;
 import Data.Auto;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -25,10 +25,14 @@ public class EditCarStage extends Stage {
         this.selectedAuto = selectedAuto;
 
         stage = this;
-        Parent root = FXMLLoader.load(getClass().getResource("EditCar.fxml"));
-
-        Scene scene = new Scene(root);
-
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditCar.fxml"));
+        AnchorPane anchorPane = loader.load();
+        
+        EditCarController controller = loader.getController();
+        controller.setStage(selectedAuto);
+        Scene scene = new Scene(anchorPane, 360, 292);
+       
         stage.setScene(scene);
         stage.show();
     }
