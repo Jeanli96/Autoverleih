@@ -2,3 +2,5 @@ Hier werden alle Änderungen eingetragen nach folgendem Schema:
 Name      Datum     geänderte Datei                 was wurde geändert (kurze Beschreibung)
 Kevin     17.12.17  EditCar.fxml                    Am Auto kann nur noch Farbe und Tagessatz geändert werden + Behebung Fehler Zugriff auf Auto
 Kevin     17.12.17  EditCarController.java          -"-
+Kevin     19.12.17  Alles Stages, Controller, Options.fxml, FXMLDocument.fxml
+Kevin     19.12.17  Alle Querys, Data.java
