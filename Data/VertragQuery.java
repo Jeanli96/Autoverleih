@@ -91,12 +91,12 @@ public class VertragQuery {
         return alleVertraege;
     }
 
-    public String getKundenName(int KDID) {
+    public String getKundenName(int KDID, String uPassword) {
 
         String holder = "";
         
         user = "kmangels_ro";
-        password = "Va7tho9a";
+        password = uPassword;
 
         try {
             //System.out.println("* Treiber laden");

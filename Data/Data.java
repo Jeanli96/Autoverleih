@@ -18,6 +18,7 @@ public class Data {
     private Auto[] angAutos = null, alleAutos = null;
     private Vertrag[] angVertraege = null, alleVertraege = null;
     private FXMLDocumentController fxmlDC = null;
+    private String password = "old_Data";
 
     public Data() {
         angKunden = new KundeQuery().read();
@@ -52,6 +53,16 @@ public class Data {
 
     public void setfxmlDC(FXMLDocumentController fxmlDC) {
         this.fxmlDC = fxmlDC;
+    }
+    
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+    
+    public String getPassword()
+    {
+        return password;
     }
 
     public int getNextKDID() {
@@ -117,7 +128,7 @@ public class Data {
                 case VERTRAG:
                     holder = new String[angVertraege.length];
                     for (int i = 0; i < holder.length; i++) {
-                        holder[i] = "Nr.: " + angVertraege[i].getVertragsID() + " | " + angVertraege[i].getKennzeichen() + " | " + new VertragQuery().getKundenName(angVertraege[i].getKundenID());
+                        holder[i] = "Nr.: " + angVertraege[i].getVertragsID() + " | " + angVertraege[i].getKennzeichen() + " | " + new VertragQuery().getKundenName(angVertraege[i].getKundenID(), password);
                     }
                     break;
             }
@@ -140,7 +151,7 @@ public class Data {
                 case VERTRAG:
                     holder = new String[alleVertraege.length];
                     for (int i = 0; i < holder.length; i++) {
-                        holder[i] = "Nr.: " + alleVertraege[i].getVertragsID() + " | " + alleVertraege[i].getKennzeichen() + " | " + new VertragQuery().getKundenName(alleVertraege[i].getKundenID());
+                        holder[i] = "Nr.: " + alleVertraege[i].getVertragsID() + " | " + alleVertraege[i].getKennzeichen() + " | " + new VertragQuery().getKundenName(alleVertraege[i].getKundenID(), password);
                     }
                     break;
             }

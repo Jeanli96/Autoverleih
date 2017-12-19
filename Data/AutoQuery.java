@@ -73,10 +73,10 @@ public class AutoQuery {
         return alleAutos;
     }
 
-    public void write(Auto neuesAuto) {
+    public void write(Auto neuesAuto, String uPassword) {
 
         user = "kmangels";
-        password = "Eid3aih3";
+        password = uPassword;
 
         try {
             //System.out.println("* Treiber laden");

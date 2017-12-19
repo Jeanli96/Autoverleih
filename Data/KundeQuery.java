@@ -73,10 +73,10 @@ public class KundeQuery {
         return alleKunden;
     }
 
-    public void write(Kunde neuerKunde) {
+    public void write(Kunde neuerKunde, String uPassword) {
 
         user = "kmangels";
-        password = "Eid3aih3";
+        password = uPassword;
 
         try {
             //System.out.println("* Treiber laden");
