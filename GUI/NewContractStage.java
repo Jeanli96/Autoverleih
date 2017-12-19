@@ -1,10 +1,12 @@
 package GUI;
 
 
+import Data.Data;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /*
@@ -18,15 +20,20 @@ import javafx.stage.Stage;
  * @author GPope
  */
 public class NewContractStage extends Stage{
-    Stage stage;
+    private Stage stage;
 
-    public NewContractStage() throws IOException {
+    public NewContractStage(Data data) throws IOException {
         stage = this;
-        Parent root = FXMLLoader.load(getClass().getResource("NewContract.fxml"));
-
-        Scene scene = new Scene(root);
-
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NewContract.fxml"));
+        AnchorPane anchorPane = loader.load();
+        
+        NewContractController controller = loader.getController();
+        controller.setData(data);
+        Scene scene = new Scene(anchorPane);
+       
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
     

@@ -5,10 +5,12 @@
  */
 package GUI;
 
+import Data.Data;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -19,14 +21,18 @@ public class CarInputStage extends Stage {
     
     private Stage stage; 
 
-    public CarInputStage() throws IOException  {
+    public CarInputStage(Data data) throws IOException  {
         stage = this;
         
-        Parent root = FXMLLoader.load(getClass().getResource("CarInput.fxml"));
-
-        Scene scene = new Scene(root);
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CarInput.fxml"));
+        AnchorPane anchorPane = loader.load();
+        
+        CarInputController controller = loader.getController();
+        controller.setData(data);
+        Scene scene = new Scene(anchorPane);
+       
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

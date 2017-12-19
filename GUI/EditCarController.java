@@ -7,6 +7,7 @@ package GUI;
 
 import Data.Auto;
 import Data.AutoQuery;
+import Data.Data;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 public class EditCarController implements Initializable {
 
     private Auto sAuto;
+    private Data data;
 
     @FXML
     private Button bearbeiten;
@@ -56,7 +58,7 @@ public class EditCarController implements Initializable {
         Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz.getText()), modell.getText(), fahrzeugtyp.getText(), farbe.getText(), "keine");
         new AutoQuery().edit(newAuto);
 
-        FXMLMain.data.fullUpdate();
+        data.fullUpdate();
         buttonAbbrechen();
     }
 
@@ -77,5 +79,10 @@ public class EditCarController implements Initializable {
         sitzplaetze.setText("" + sAuto.getSitzplaetze());
         farbe.setText(sAuto.getFarbe());
         tagessatz.setText("" + sAuto.getTagessatz());
+    }
+    
+    public void setData(Data data)
+    {
+        this.data = data;
     }
 }

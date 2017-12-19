@@ -61,7 +61,6 @@ public class NewContractController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        data = FXMLMain.data;
     }
 
     @FXML
@@ -132,10 +131,10 @@ public class NewContractController implements Initializable {
                     holder = "kein Eintrag";
                 }
 
-                Vertrag neuerVertag = new Vertrag(FXMLMain.data.getNextVID(), Integer.parseInt(customerNo.getText()), kennzeichen.getText(), holder, pDate, rDate, null, null);
+                Vertrag neuerVertag = new Vertrag(data.getNextVID(), Integer.parseInt(customerNo.getText()), kennzeichen.getText(), holder, pDate, rDate, null, null);
                 new VertragQuery().write(neuerVertag);
 
-                FXMLMain.data.fullUpdate();
+                data.fullUpdate();
                 buttonAbbruch();
             } else {
                 final Stage dialogStage = new Stage();
@@ -183,6 +182,11 @@ public class NewContractController implements Initializable {
     private void buttonAbbruch() {
         Stage stage = (Stage) abbruch.getScene().getWindow();
         stage.close();
+    }
+    
+    public void setData(Data data)
+    {
+        this.data = data;
     }
 
 }

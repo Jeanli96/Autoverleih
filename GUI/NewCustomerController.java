@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Data.Data;
 import Data.Kunde;
 import Data.KundeQuery;
 import java.net.URL;
@@ -25,6 +26,8 @@ public class NewCustomerController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    private Data data;
     
     @FXML
     private Button anlegen;
@@ -59,10 +62,10 @@ public class NewCustomerController implements Initializable {
     @FXML
     private void buttonAnlegen()
     {
-        Kunde newKunde = new Kunde(FXMLMain.data.getNextKDID() ,name.getText(), vorname.getText(), plz.getText(), strasse.getText(), Integer.parseInt(hausnummer.getText()), wohnort.getText(), telefonnummer.getText(), geburtsdatum.getText(), fklasse.getText());
-        new KundeQuery().write(newKunde);
+        Kunde newKunde = new Kunde(data.getNextKDID() ,name.getText(), vorname.getText(), plz.getText(), strasse.getText(), Integer.parseInt(hausnummer.getText()), wohnort.getText(), telefonnummer.getText(), geburtsdatum.getText(), fklasse.getText());
+        new KundeQuery().write(newKunde, data.getPassword());
         
-        FXMLMain.data.fullUpdate();
+        data.fullUpdate();
         buttonAbbruch();
     }
     
@@ -71,5 +74,10 @@ public class NewCustomerController implements Initializable {
     {
         Stage stage = (Stage) abbruch.getScene().getWindow();
         stage.close();   
+    }
+    
+    public void setData(Data data)
+    {
+        this.data = data;
     }
 }

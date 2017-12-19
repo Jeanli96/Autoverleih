@@ -5,10 +5,13 @@
  */
 package GUI;
 
+import Data.Data;
+import static GUI.EditCarStage.stage;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -17,15 +20,20 @@ import javafx.stage.Stage;
  */
 public class NewCustomerStage extends Stage{
     
-    Stage stage;
+    private Stage stage;
 
-    public NewCustomerStage() throws IOException {
+    public NewCustomerStage(Data data) throws IOException {
         stage = this;
-        Parent root = FXMLLoader.load(getClass().getResource("NewCustomer.fxml"));
-
-        Scene scene = new Scene(root);
-
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NewCustomer.fxml"));
+        AnchorPane anchorPane = loader.load();
+        
+        NewCustomerController controller = loader.getController();
+        controller.setData(data);
+        Scene scene = new Scene(anchorPane);
+       
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 }

@@ -5,10 +5,10 @@
  */
 package GUI;
 
-import Data.Auto;
-import Data.Data;
 import java.io.IOException;
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -17,24 +17,24 @@ import javafx.stage.Stage;
  *
  * @author kevin
  */
-public class EditCarStage extends Stage {
+public class OptionsStage extends Stage {
 
-    static public EditCarStage stage;
+    private Stage stage;
 
-    public EditCarStage(Auto selectedAuto, Data data) throws IOException {
-
+    public OptionsStage(FXMLMain fmain, Stage fstage) throws IOException {
         stage = this;
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditCar.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Options.fxml"));
         AnchorPane anchorPane = loader.load();
         
-        EditCarController controller = loader.getController();
-        controller.setStage(selectedAuto);
-        controller.setData(data);
+        OptionsController controller = loader.getController();
+        controller.setMain(fmain);
+        controller.setMStage(fstage);
         Scene scene = new Scene(anchorPane);
        
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
     }
+
 }

@@ -7,6 +7,7 @@ package GUI;
 
 import Data.Auto;
 import Data.AutoQuery;
+import Data.Data;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -25,6 +26,8 @@ import javafx.stage.Stage;
  */
 public class NewCarController implements Initializable {
 
+    private Data data;
+    
     @FXML
     private Button anlegen;
     @FXML
@@ -76,9 +79,9 @@ public class NewCarController implements Initializable {
         }
         
         Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz.getText()), modell.getText(), holder, farbe.getText(), "keine");
-        new AutoQuery().write(newAuto);
+        new AutoQuery().write(newAuto, data.getPassword());
         
-        FXMLMain.data.fullUpdate();
+        data.fullUpdate();
         buttonAbbrechen();
     }
 
@@ -87,5 +90,10 @@ public class NewCarController implements Initializable {
     {
         Stage stage = (Stage) abbruch.getScene().getWindow();
         stage.close(); 
+    }
+    
+    public void setData(Data data)
+    {
+        this.data = data;
     }
 }
