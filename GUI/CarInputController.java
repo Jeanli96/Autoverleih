@@ -38,7 +38,7 @@ import javafx.stage.Stage;
  */
 public class CarInputController implements Initializable {
 
-    Data data;
+    private Data data;
 
     @FXML
     private Button abbruch, bestaetigen, searchKennzeichen, searchVertrag;
@@ -49,7 +49,6 @@ public class CarInputController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        data = FXMLMain.data;
     }
 
     @FXML
@@ -65,7 +64,7 @@ public class CarInputController implements Initializable {
             String[] holder = new String[vertraege.length];
 
             for (int i = 0; i < vertraege.length; i++) {
-                holder[i] = "Nr.: " + vertraege[i].getVertragsID() + " | " + vertraege[i].getKennzeichen() + " | " + new VertragQuery().getKundenName(vertraege[i].getKundenID());
+                holder[i] = "Nr.: " + vertraege[i].getVertragsID() + " | " + vertraege[i].getKennzeichen() + " | " + new VertragQuery().getKundenName(vertraege[i].getKundenID(), data.getPassword());
             }
 
             ObservableList<String> daten = FXCollections.observableArrayList(holder);
@@ -132,5 +131,10 @@ public class CarInputController implements Initializable {
     private void buttonAbbruch() {
         Stage stage = (Stage) abbruch.getScene().getWindow();
         stage.close();
+    }
+    
+    public void setData(Data data)
+    {
+        this.data = data;
     }
 }
