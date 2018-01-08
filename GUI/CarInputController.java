@@ -49,6 +49,9 @@ public class CarInputController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	
+    	kennzeichen.setEditable(false);
+    	vertrag.setEditable(false);
     }
 
     @FXML
