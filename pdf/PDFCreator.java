@@ -30,42 +30,87 @@ public class PDFCreator {
         this.data = data;
     }
     
-    public void ausführen() throws IOException
+    public void ausführen() throws IOException 
     {
         String name = data.getKunde(vertrag.getKundenID()-1, true).getName();
-        String Vorname = data.getKunde(vertrag.getKundenID()-1, true).getVorname();
+        String vorname = data.getKunde(vertrag.getKundenID()-1, true).getVorname();
+        int kundenid = vertrag.getKundenID();
         String kfz = vertrag.getKennzeichen();
         String zweitfahrer = vertrag.getZweitfahrer();
         float tagessatz = data.getAuto(kfz).getTagessatz();
         Date abholtermin = vertrag.getAbholtermin();
         Date ruecktermin = vertrag.getRueckgabetermin();
         int vertragsnr = vertrag.getVertragsID();
+        String marke = data.getAuto(kfz).getMarke();
+        String modell = data.getAuto(kfz).getModell();
         
-        //Anlegen von PDF und Seite
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
-        document.addPage(page);
         
-        //Inhalt auf Seite bringen
-        PDPageContentStream content = new PDPageContentStream(document, page, true, true);
-        
-        content.beginText();
-        content.moveTextPositionByAmount(25, 750);
-        content.setFont(PDType1Font.TIMES_ROMAN, 40);
-        content.drawString("Vertrag");
-        content.moveTextPositionByAmount(0, -40);
-        content.setFont(PDType1Font.TIMES_ROMAN, 12);
-        content.drawString("hier kommt der Text");
-        content.endText();
+      File file = new File("C:/Users/Jessi/Documents/NetBeansProjects/SWT-Autovermietung/Vertrag.pdf");
+      PDDocument document = PDDocument.load(file);
      
-      System.out.println("Content added");
       
-       content.close();
        
-      //PDF speichern
-      document.save(new File("C:/Users/Jessi/Desktop/Vertrag_"+vertragsnr+".pdf"));
+      PDPage page = document.getPage(0);
+      PDPage page1 = document.getPage(1);
+      PDPageContentStream content = new PDPageContentStream(document, page, true, true);
+      PDPageContentStream content1 = new PDPageContentStream(document, page1, true, true);
+      
+      content.beginText(); 
+      content1.beginText(); 
+      
+      content.moveTextPositionByAmount(150, 650);
+      content.setFont(PDType1Font.TIMES_ROMAN, 16);
+      content.drawString(vertragsnr+"");
+      
+      content.moveTextPositionByAmount(0, -45);
+      content.setFont(PDType1Font.TIMES_ROMAN, 16);
+      content.drawString(marke+" "+modell);
+      
+      content.moveTextPositionByAmount(290, 0);
+      content.setFont(PDType1Font.TIMES_ROMAN, 16);
+      content.drawString(kfz+"");
+      
+      content.moveTextPositionByAmount(-290, -70);
+      content.setFont(PDType1Font.TIMES_ROMAN, 16);
+      content.drawString(vorname+" "+name);
+      
+      content.moveTextPositionByAmount(320, 0);
+      content.setFont(PDType1Font.TIMES_ROMAN, 16);
+      content.drawString(kundenid+"");
+      
+      content.moveTextPositionByAmount(-150, -20);
+      content.setFont(PDType1Font.TIMES_ROMAN, 16);
+      content.drawString(zweitfahrer);
+      
+      content.moveTextPositionByAmount(-110, -45);
+      content.setFont(PDType1Font.TIMES_ROMAN, 14);
+      content.drawString(abholtermin+"");
+      
+      content.moveTextPositionByAmount(0, -25);
+      content.setFont(PDType1Font.TIMES_ROMAN, 14);
+      content.drawString(ruecktermin+"");
+      
+      
+      content1.moveTextPositionByAmount(330, 765);
+      content1.setFont(PDType1Font.TIMES_ROMAN, 14);
+      content1.drawString(tagessatz+"");
+
+     
+      content.endText();
+      content1.endText();
+
+      System.out.println("PDF erstellt");
+
+    
+      content.close();
+      content1.close();
+      
+    
 
       
+      document.save(new File("C:/Users/Jessi/Desktop/Auto_Vertrag/Vertrag_"+vertragsnr+".pdf"));
+
+     
       document.close();
-    }
+   }
 }
