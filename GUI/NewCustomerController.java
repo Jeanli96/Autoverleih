@@ -10,10 +10,18 @@ import Data.Kunde;
 import Data.KundeQuery;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -26,14 +34,13 @@ public class NewCustomerController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     private Data data;
-    
+
     @FXML
     private Button anlegen;
     @FXML
     private Button abbruch;
-    
+
     @FXML
     private TextField name;
     @FXML
@@ -52,32 +59,56 @@ public class NewCustomerController implements Initializable {
     private TextField geburtsdatum;
     @FXML
     private TextField fklasse;
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    } 
-    
-    @FXML
-    private void buttonAnlegen()
-    {
-        Kunde newKunde = new Kunde(data.getNextKDID() ,name.getText(), vorname.getText(), plz.getText(), strasse.getText(), Integer.parseInt(hausnummer.getText()), wohnort.getText(), telefonnummer.getText(), geburtsdatum.getText(), fklasse.getText());
-        new KundeQuery().write(newKunde, data.getPassword());
-        
-        data.fullUpdate();
-        buttonAbbruch();
     }
-    
+
     @FXML
-    private void buttonAbbruch()
-    {
+    private void buttonAnlegen() {
+        try {
+            Kunde newKunde = new Kunde(data.getNextKDID(), name.getText(), vorname.getText(), plz.getText(), strasse.getText(), Integer.parseInt(hausnummer.getText()), wohnort.getText(), telefonnummer.getText(), geburtsdatum.getText(), fklasse.getText());
+            new KundeQuery().write(newKunde, data.getPassword());
+
+            data.fullUpdate();
+            buttonAbbruch();
+        } catch (IllegalArgumentException e) {
+            final Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+
+            Button ok = new Button("OK");
+            ok.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    dialogStage.close();
+                }
+            });
+
+            VBox vbox = new VBox(2);
+
+            String message = e.getMessage();
+
+            if (message.contains("For input")) {
+                message = "Fehlerhafte Eingabe. Bitte die angegebenen Daten ueberpruefen.";
+            }
+
+            vbox.getChildren().addAll(new Text(message), ok);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.setPadding(new Insets(15));
+
+            dialogStage.setScene(new Scene(vbox));
+            dialogStage.show();
+        }
+    }
+
+    @FXML
+    private void buttonAbbruch() {
         Stage stage = (Stage) abbruch.getScene().getWindow();
-        stage.close();   
+        stage.close();
     }
-    
-    public void setData(Data data)
-    {
+
+    public void setData(Data data) {
         this.data = data;
     }
 }
