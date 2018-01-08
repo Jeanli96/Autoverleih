@@ -21,7 +21,28 @@ public class Auto {
     private String maengel;
     
 
-    public Auto(String kennzeichen, String marke, int sitzplaetze, float tagessatz, String modell, String typ, String farbe, String maengel) {
+    public Auto(String kennzeichen, String marke, int sitzplaetze, float tagessatz, String modell, String typ, String farbe, String maengel) throws IllegalArgumentException {
+    	
+    	try{
+            if ( kennzeichen.length() < 5 )
+                throw new IllegalArgumentException("Das angegebene Kennzeichen ist zu kurz.");   
+            if ( kennzeichen.length() > 10  )
+            	throw new IllegalArgumentException("Das angegebene Kennzeichen ist zu lang.");                        
+        //  TESTEN nach Zahlen und Buchstaben vorn und hinten
+            
+            String pattern = "^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}";
+            if ( !kennzeichen.matches(pattern))
+                throw new IllegalArgumentException("Das angegebene Kennzeichen entfaellt der Norm.");
+            
+            if (sitzplaetze < 1)
+            	throw new IllegalArgumentException("Die Sitzzahl darf nicht unter 1 liegen.");
+            if (sitzplaetze > 7)
+            	throw new IllegalArgumentException("Die Sitzzahl darf nicht ueber 7 liegen.");
+            
+            if (tagessatz < 0)
+            	throw new IllegalArgumentException("Der Tagessatz darf nicht unter 0 liegen.");
+            	
+        
         this.kennzeichen = kennzeichen;
         this.marke = marke;
         this.sitzplaetze = sitzplaetze;
@@ -30,6 +51,7 @@ public class Auto {
         this.typ = typ;
         this.farbe = farbe;
         this.maengel = maengel;
+    	} finally{}
         
     }
 
@@ -42,7 +64,7 @@ public class Auto {
                 + "Modell: " + modell + "\n"
                 + "Typ: " + typ + "\n"
                 + "Farbe: " + farbe + "\n"
-                + "Mängel: " + maengel;
+                + "Maengel: " + maengel;
                 
 
         return text;
