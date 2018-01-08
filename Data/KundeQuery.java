@@ -31,7 +31,7 @@ public class KundeQuery {
             Class.forName("org.gjt.mm.mysql.Driver").newInstance();
         } catch (Exception e) {
             System.err.println("Treiber konnte nicht geladen werden.");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         try {
             //System.out.println("* Verbindung aufbauen");
@@ -67,7 +67,7 @@ public class KundeQuery {
             System.out.println("SQLException: " + sqle.getMessage());
             System.out.println("SQLState: " + sqle.getSQLState());
             System.out.println("VendorError: " + sqle.getErrorCode());
-            sqle.printStackTrace();
+            //sqle.printStackTrace();
         }
 
         return alleKunden;
@@ -83,7 +83,7 @@ public class KundeQuery {
             Class.forName("org.gjt.mm.mysql.Driver").newInstance();
         } catch (Exception e) {
             System.err.println("Treiber konnte nicht geladen werden.");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         try {
             //System.out.println("* Verbindung aufbauen");
@@ -106,7 +106,7 @@ public class KundeQuery {
             System.out.println("SQLException: " + sqle.getMessage());
             System.out.println("SQLState: " + sqle.getSQLState());
             System.out.println("VendorError: " + sqle.getErrorCode());
-            sqle.printStackTrace();
+            //sqle.printStackTrace();
         }
     }
 }
