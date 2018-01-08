@@ -10,9 +10,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -27,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pdf.PDFCreator;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -131,8 +130,11 @@ public class NewContractController implements Initializable {
                     holder = "kein Eintrag";
                 }
 
-                Vertrag neuerVertag = new Vertrag(data.getNextVID(), Integer.parseInt(customerNo.getText()), kennzeichen.getText(), holder, pDate, rDate, null, null);
-                new VertragQuery().write(neuerVertag);
+                Vertrag neuerVertrag = new Vertrag(data.getNextVID(), Integer.parseInt(customerNo.getText()), kennzeichen.getText(), holder, pDate, rDate, null, null);
+                new VertragQuery().write(neuerVertrag);
+                
+                PDFCreator pdfc = new PDFCreator(neuerVertrag, data);
+                pdfc.ausführen();
 
                 data.fullUpdate();
                 buttonAbbruch();

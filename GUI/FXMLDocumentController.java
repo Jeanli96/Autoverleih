@@ -13,8 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -68,7 +66,7 @@ public class FXMLDocumentController implements Initializable {
             data.fullUpdate();
         } else if (event.getSource() == carEdit) {
             int i = list1.getSelectionModel().getSelectedIndex();
-            new EditCarStage(data.getAuto(i), data);
+            new EditCarStage(data.getAuto(i, false), data);
             data.fullUpdate();
         } else if (event.getSource() == carb) {
             new CarOutputStage(data);
