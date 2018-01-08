@@ -36,7 +36,7 @@ public class VertragQuery {
             Class.forName("org.gjt.mm.mysql.Driver").newInstance();
         } catch (Exception e) {
             System.err.println("Treiber konnte nicht geladen werden.");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         try {
             //System.out.println("* Verbindung aufbauen");
@@ -83,9 +83,9 @@ public class VertragQuery {
             System.out.println("SQLException: " + sqle.getMessage());
             System.out.println("SQLState: " + sqle.getSQLState());
             System.out.println("VendorError: " + sqle.getErrorCode());
-            sqle.printStackTrace();
+            //sqle.printStackTrace();
         } catch (ParseException ex) {
-            Logger.getLogger(VertragQuery.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(VertragQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return alleVertraege;
@@ -129,7 +129,7 @@ public class VertragQuery {
             System.out.println("SQLException: " + sqle.getMessage());
             System.out.println("SQLState: " + sqle.getSQLState());
             System.out.println("VendorError: " + sqle.getErrorCode());
-            sqle.printStackTrace();
+            //sqle.printStackTrace();
         }
 
         return holder;
@@ -145,7 +145,7 @@ public class VertragQuery {
             Class.forName("org.gjt.mm.mysql.Driver").newInstance();
         } catch (Exception e) {
             System.err.println("Treiber konnte nicht geladen werden.");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         try {
             //System.out.println("* Verbindung aufbauen");
@@ -168,7 +168,7 @@ public class VertragQuery {
             System.out.println("SQLException: " + sqle.getMessage());
             System.out.println("SQLState: " + sqle.getSQLState());
             System.out.println("VendorError: " + sqle.getErrorCode());
-            sqle.printStackTrace();
+            //sqle.printStackTrace();
         }
     }
     
@@ -182,7 +182,7 @@ public class VertragQuery {
             Class.forName("org.gjt.mm.mysql.Driver").newInstance();
         } catch (Exception e) {
             System.err.println("Treiber konnte nicht geladen werden.");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         try {
             //System.out.println("* Verbindung aufbauen");
@@ -205,7 +205,7 @@ public class VertragQuery {
             System.out.println("SQLException: " + sqle.getMessage());
             System.out.println("SQLState: " + sqle.getSQLState());
             System.out.println("VendorError: " + sqle.getErrorCode());
-            sqle.printStackTrace();
+            //sqle.printStackTrace();
         }
     }
 }
