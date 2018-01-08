@@ -103,7 +103,7 @@ public class VertragQuery {
             Class.forName("org.gjt.mm.mysql.Driver").newInstance();
         } catch (Exception e) {
             System.err.println("Treiber konnte nicht geladen werden.");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         try {
             //System.out.println("* Verbindung aufbauen");
@@ -126,9 +126,9 @@ public class VertragQuery {
             //System.out.println("* Datenbank-Verbindung beenden");
             conn.close();
         } catch (SQLException sqle) {
-            System.out.println("SQLException: " + sqle.getMessage());
-            System.out.println("SQLState: " + sqle.getSQLState());
-            System.out.println("VendorError: " + sqle.getErrorCode());
+            //System.out.println("SQLException: " + sqle.getMessage());
+            //System.out.println("SQLState: " + sqle.getSQLState());
+            //System.out.println("VendorError: " + sqle.getErrorCode());
             //sqle.printStackTrace();
         }
 
@@ -165,9 +165,9 @@ public class VertragQuery {
             //System.out.println("* Datenbank-Verbindung beenden");
             conn.close();
         } catch (SQLException sqle) {
-            System.out.println("SQLException: " + sqle.getMessage());
-            System.out.println("SQLState: " + sqle.getSQLState());
-            System.out.println("VendorError: " + sqle.getErrorCode());
+            //System.out.println("SQLException: " + sqle.getMessage());
+            //System.out.println("SQLState: " + sqle.getSQLState());
+            //System.out.println("VendorError: " + sqle.getErrorCode());
             //sqle.printStackTrace();
         }
     }
@@ -202,9 +202,9 @@ public class VertragQuery {
             //System.out.println("* Datenbank-Verbindung beenden");
             conn.close();
         } catch (SQLException sqle) {
-            System.out.println("SQLException: " + sqle.getMessage());
-            System.out.println("SQLState: " + sqle.getSQLState());
-            System.out.println("VendorError: " + sqle.getErrorCode());
+            //System.out.println("SQLException: " + sqle.getMessage());
+            //System.out.println("SQLState: " + sqle.getSQLState());
+            //System.out.println("VendorError: " + sqle.getErrorCode());
             //sqle.printStackTrace();
         }
     }

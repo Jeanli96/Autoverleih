@@ -103,9 +103,9 @@ public class AutoQuery {
             //System.out.println("* Datenbank-Verbindung beenden");
             conn.close();
         } catch (SQLException sqle) {
-            System.out.println("SQLException: " + sqle.getMessage());
-            System.out.println("SQLState: " + sqle.getSQLState());
-            System.out.println("VendorError: " + sqle.getErrorCode());
+            //System.out.println("SQLException: " + sqle.getMessage());
+            //System.out.println("SQLState: " + sqle.getSQLState());
+            //System.out.println("VendorError: " + sqle.getErrorCode());
             //sqle.printStackTrace();
         }
     }
@@ -140,9 +140,9 @@ public class AutoQuery {
             //System.out.println("* Datenbank-Verbindung beenden");
             conn.close();
         } catch (SQLException sqle) {
-            System.out.println("SQLException: " + sqle.getMessage());
-            System.out.println("SQLState: " + sqle.getSQLState());
-            System.out.println("VendorError: " + sqle.getErrorCode());
+            //System.out.println("SQLException: " + sqle.getMessage());
+            //System.out.println("SQLState: " + sqle.getSQLState());
+            //System.out.println("VendorError: " + sqle.getErrorCode());
             //sqle.printStackTrace();
         }
     }
@@ -177,9 +177,9 @@ public class AutoQuery {
             //System.out.println("* Datenbank-Verbindung beenden");
             conn.close();
         } catch (SQLException sqle) {
-            System.out.println("SQLException: " + sqle.getMessage());
-            System.out.println("SQLState: " + sqle.getSQLState());
-            System.out.println("VendorError: " + sqle.getErrorCode());
+            //System.out.println("SQLException: " + sqle.getMessage());
+            //System.out.println("SQLState: " + sqle.getSQLState());
+            //System.out.println("VendorError: " + sqle.getErrorCode());
             //sqle.printStackTrace();
         }
     }
