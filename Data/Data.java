@@ -6,6 +6,11 @@
 package Data;
 
 import GUI.FXMLDocumentController;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Vector;
 
 /**
@@ -49,6 +54,36 @@ public class Data {
         }
 
         fxmlDC.updateList();
+    }
+    
+    public void hasCarTime(String kennzeichen, Date pDate, Date rDate) throws IllegalArgumentException
+    {
+    	boolean hold = true;
+    	
+    	for (int i = 0; i < alleVertraege.length; i++)
+    	{
+    		if (alleVertraege[i].getKennzeichen().equals(kennzeichen))
+    		{
+    			if (pDate.before(alleVertraege[i].getRueckgabetermin()) && pDate.after(alleVertraege[i].getAbholtermin()))
+    				hold = false;
+    			if (rDate.before(alleVertraege[i].getRueckgabetermin()) && rDate.after(alleVertraege[i].getAbholtermin()))
+    				hold = false;
+    			
+    			if (!hold)
+    			{	
+    				DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+    				Calendar c = df.getCalendar();
+    				
+    				c.setTime(alleVertraege[i].getAbholtermin());
+                	String d1 = c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + c.get(Calendar.YEAR);
+                	
+                	c.setTime(alleVertraege[i].getRueckgabetermin());
+                	String d2 = c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + c.get(Calendar.YEAR);
+                	
+    				throw new IllegalArgumentException("Das Auto steht vom " + d1 + " bis zum " + d2 + " nicht zur Verfuegung.");
+    			}
+    		}
+    	}
     }
 
     public void setfxmlDC(FXMLDocumentController fxmlDC) {
