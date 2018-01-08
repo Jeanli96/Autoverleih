@@ -12,11 +12,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -78,11 +86,54 @@ public class NewCarController implements Initializable {
                 break;
         }
         
-        Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz.getText()), modell.getText(), holder, farbe.getText(), "keine");
-        new AutoQuery().write(newAuto, data.getPassword());
-        
-        data.fullUpdate();
-        buttonAbbrechen();
+        try
+        {
+        	if (data.getAuto(kennzeichen.getText()) != null)
+        		throw new IllegalArgumentException("Das angegebene Kennzeichen ist schon vorhanden");
+        	Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz.getText()), modell.getText(), holder, farbe.getText(), "keine");
+        	new AutoQuery().write(newAuto, data.getPassword());
+        	
+        	data.fullUpdate();
+            buttonAbbrechen();
+        } catch (IllegalArgumentException e) {
+        	final Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+
+            Button ok = new Button("OK");
+            ok.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    dialogStage.close();
+                }
+            });
+
+            VBox vbox = new VBox(2);
+            vbox.getChildren().addAll(new Text(e.getMessage()), ok);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.setPadding(new Insets(15));
+
+            dialogStage.setScene(new Scene(vbox));
+            dialogStage.show();
+        } catch (Exception e) {
+        	final Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+
+            Button ok = new Button("OK");
+            ok.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    dialogStage.close();
+                }
+            });
+
+            VBox vbox = new VBox(2);
+            vbox.getChildren().addAll(new Text("Felerhafte Eingabe. Bitte die angegebenen Daten überprüfen."), ok);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.setPadding(new Insets(15));
+
+            dialogStage.setScene(new Scene(vbox));
+            dialogStage.show();
+        }
     }
 
     @FXML
