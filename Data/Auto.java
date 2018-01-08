@@ -39,7 +39,7 @@ public class Auto {
             if (sitzplaetze > 7)
             	throw new IllegalArgumentException("Die Sitzzahl darf nicht ueber 7 liegen.");
             
-            if (tagessatz < 0)
+            if (tagessatz <= 0)
             	throw new IllegalArgumentException("Der Tagessatz darf nicht unter 0 liegen.");
             	
         
