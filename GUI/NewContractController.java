@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.Auto;
 import Data.Data;
 import Data.Datenbank;
 import Data.Vertrag;
@@ -60,6 +61,9 @@ public class NewContractController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	
+    	customerNo.setEditable(false);
+    	kennzeichen.setEditable(false);
     }
 
     @FXML
@@ -121,6 +125,9 @@ public class NewContractController implements Initializable {
         try {
             pDate = Date.valueOf(pickupDate.getValue());
             rDate = Date.valueOf(returnDate.getValue());
+            
+            
+            data.hasCarTime(kennzeichen.getText(), pDate, rDate);
 
             if (pDate.before(rDate)) {
                 String holder;
@@ -133,8 +140,8 @@ public class NewContractController implements Initializable {
                 Vertrag neuerVertrag = new Vertrag(data.getNextVID(), Integer.parseInt(customerNo.getText()), kennzeichen.getText(), holder, pDate, rDate, null, null);
                 new VertragQuery().write(neuerVertrag);
                 
-                PDFCreator pdfc = new PDFCreator(neuerVertrag, data);
-                pdfc.ausführen();
+                //PDFCreator pdfc = new PDFCreator(neuerVertrag, data);
+                //pdfc.ausfuehren();
 
                 data.fullUpdate();
                 buttonAbbruch();
@@ -151,13 +158,34 @@ public class NewContractController implements Initializable {
                 });
 
                 VBox vbox = new VBox(2);
-                vbox.getChildren().addAll(new Text("Der Abholtermin muss vor dem Rückgabetermin liegen."), ok);
+                vbox.getChildren().addAll(new Text("Der Abholtermin muss vor dem Rueckgabetermin liegen."), ok);
                 vbox.setAlignment(Pos.CENTER);
                 vbox.setPadding(new Insets(15));
 
                 dialogStage.setScene(new Scene(vbox));
                 dialogStage.show();
             }
+        } catch (IllegalArgumentException e) {
+        	
+        	final Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+
+            Button ok = new Button("OK");
+            ok.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    dialogStage.close();
+                }
+            });
+
+            VBox vbox = new VBox(2);
+            vbox.getChildren().addAll(new Text(e.getMessage()), ok);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.setPadding(new Insets(15));
+
+            dialogStage.setScene(new Scene(vbox));
+            dialogStage.show();
+        
         } catch (Exception ex) {
             final Stage dialogStage = new Stage();
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -171,7 +199,7 @@ public class NewContractController implements Initializable {
             });
 
             VBox vbox = new VBox(2);
-            vbox.getChildren().addAll(new Text("Felerhafte Eingabe. Bitte die angegebenen Daten überprüfen."), ok);
+            vbox.getChildren().addAll(new Text("Felerhafte Eingabe. Bitte die angegebenen Daten Ueberpruefen."), ok);
             vbox.setAlignment(Pos.CENTER);
             vbox.setPadding(new Insets(15));
 
