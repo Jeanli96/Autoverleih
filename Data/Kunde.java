@@ -5,6 +5,8 @@
  */
 package Data;
 
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author kevin
@@ -24,27 +26,30 @@ public class Kunde {
 
     public Kunde(int kdID, String name, String vorname, String plz, String strasse, int hausnummer, String wohnort, String telefonnummer, String geburtsdatum, String fKlasse) throws IllegalArgumentException {
     	
-    	if (!name.matches("[a-zA-ZöäüÖÄÜ ]+"))
+    	if (!name.matches("[a-zA-Z]+"))
     		throw new IllegalArgumentException("Der Name enthaelt min. 1 unzulaessiges Zeichen.");
     	
-    	if (!vorname.matches("[a-zA-ZöäüÖÄÜ ]+"))
+    	if (!vorname.matches("[a-zA-Z]+"))
     		throw new IllegalArgumentException("Der Vorname enthaelt min. 1 unzulaessiges Zeichen.");
     	
     	if (!plz.matches("[0-9]+"))
     		throw new IllegalArgumentException("Die PLZ darf nur aus Zahlen bestehen.");
     	
-    	if (!strasse.matches("[a-zA-ZöäüÖÄÜ ]+"))
+    	if (!strasse.matches("[a-zA-Z]+"))
     		throw new IllegalArgumentException("Die Strasse enthaelt min. 1 unzulaessiges Zeichen.");
     	
-    	if (!wohnort.matches("[a-zA-ZöäüÖÄÜ ]+"))
+    	if (!wohnort.matches("[a-zA-Z]+"))
     		throw new IllegalArgumentException("Der Wohnort enthaelt min. 1 unzulaessiges Zeichen.");
     	
-    	if (!telefonnummer.matches("^\\+?[0-9 ]+"))
-    		throw new IllegalArgumentException("Die Telefonnummer darf nur aus Zahlen bestehen.");
+    	if (!telefonnummer.matches("^\\+?[0-9 ]{3,20}"))
+    		throw new IllegalArgumentException("Die Telefonnummer darf nur aus Zahlen bestehen 3-20 Ziffern.");
     	
     	if (!geburtsdatum.matches("[0-9]{2}.[0-9]{2}.[0-9]{4}"))
     		throw new IllegalArgumentException("Das Geburtsdatum muss im Format DD.MM.YYYY sein.");
     	
+        if (!checkDate(geburtsdatum))
+    		throw new IllegalArgumentException("Fehlerhaftes Geburtsdatum DD.MM.YYYY.");
+        
     	if (!fKlasse.matches("AM|A1|A2|A|B|BF17|B96|BE|C1|C|CE|D1|D1E|D|DE|T|L"))
     		throw new IllegalArgumentException("Die Telefonnummer darf nur aus Zahlen bestehen.");
     	
@@ -129,5 +134,19 @@ public class Kunde {
 
     public String getFKlasse() {
         return fKlasse;
+    }
+    
+    public static boolean checkDate(String date){
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        dateFormat.setLenient(false);
+        try{
+            dateFormat.parse(date.trim());
+         }
+        catch(Exception pe){
+            return false;
+        }
+        return true;
+        
     }
 }
