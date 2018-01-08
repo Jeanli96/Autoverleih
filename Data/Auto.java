@@ -41,16 +41,24 @@ public class Auto {
             
             if (tagessatz <= 0)
             	throw new IllegalArgumentException("Der Tagessatz darf nicht unter 0 liegen.");
-            	
+            
+            String s = Double.toString(tagessatz);
+            if (s.contains("."))
+            {
+            	s = s.substring(s.indexOf(".") + 1);
+            	if (s.length() > 3)
+            		throw new IllegalArgumentException("Der Tagessatz darf nicht mehr als 2 Nachkommastellen haben.");
+            }
+            
         
-        this.kennzeichen = kennzeichen;
-        this.marke = marke;
-        this.sitzplaetze = sitzplaetze;
-        this.tagessatz = tagessatz;
-        this.modell = modell;
-        this.typ = typ;
-        this.farbe = farbe;
-        this.maengel = maengel;
+            this.kennzeichen = kennzeichen;
+            this.marke = marke;
+            this.sitzplaetze = sitzplaetze;
+            this.tagessatz = tagessatz;
+            this.modell = modell;
+            this.typ = typ;
+            this.farbe = farbe;
+            this.maengel = maengel;
     	} finally{}
         
     }
