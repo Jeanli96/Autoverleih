@@ -96,14 +96,39 @@ public class Data {
     
     public Vertrag getVertrag(int i, boolean all)
     {
-        if (all == false)
+        if (!all)
             return angVertraege[i];
         else
             return alleVertraege[i];
     }
 
-    public Auto getAuto(int i) {
-        return angAutos[i];
+    public Auto getAuto(int i, boolean all) {
+        if (!all)
+            return angAutos[i];
+        else
+            return alleAutos[i];
+    }
+    
+    public Auto getAuto(String knz)
+    {
+        Auto holder = null;
+        for (int i = 0; i < alleAutos.length; i++)
+        {
+            if (alleAutos[i].getKennzeichen().equals(knz))
+            {
+                holder = alleAutos[i];
+                break;
+            }
+        }
+        return holder;
+    }
+    
+    public Kunde getKunde(int i, boolean all)
+    {
+        if (!all)
+            return angKunden[i];
+        else
+            return alleKunden[i];
     }
 
     public String[] getText(Datenbank type, boolean all) {
