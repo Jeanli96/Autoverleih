@@ -10,11 +10,20 @@ import Data.AutoQuery;
 import Data.Data;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -54,12 +63,43 @@ public class EditCarController implements Initializable {
     
     @FXML
     private void buttonBearbeiten() {
+    	
+    	try 
+    	{
+    		String tagessatz = this.tagessatz.getText();
+    		tagessatz = tagessatz.replace(",", ".");
+    		
+    		Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz), modell.getText(), fahrzeugtyp.getText(), farbe.getText(), "keine");
+    		new AutoQuery().edit(newAuto);
 
-        Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz.getText()), modell.getText(), fahrzeugtyp.getText(), farbe.getText(), "keine");
-        new AutoQuery().edit(newAuto);
+    		data.fullUpdate();
+    		buttonAbbrechen();
+    	} catch (IllegalArgumentException e) {
+        	final Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
 
-        data.fullUpdate();
-        buttonAbbrechen();
+            Button ok = new Button("OK");
+            ok.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    dialogStage.close();
+                }
+            });
+
+            VBox vbox = new VBox(2);
+            
+            String message = e.getMessage();
+            
+            if (message.contains("For input"))
+            	message = "Fehlerhafte Eingabe. Bitte die angegebenen Daten ueberpruefen.";
+            
+            vbox.getChildren().addAll(new Text(message), ok);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.setPadding(new Insets(15));
+
+            dialogStage.setScene(new Scene(vbox));
+            dialogStage.show();
+        }
     }
 
     @FXML

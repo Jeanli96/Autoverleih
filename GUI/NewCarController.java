@@ -92,10 +92,7 @@ public class NewCarController implements Initializable {
         		throw new IllegalArgumentException("Das angegebene Kennzeichen ist schon vorhanden");
         	
         		String tagessatz = this.tagessatz.getText();
-        		System.out.println(tagessatz);
         		tagessatz = tagessatz.replace(",", ".");
-        		System.out.println(tagessatz);
-        		System.out.println(Float.parseFloat(tagessatz));
         		
         		Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz), modell.getText(), holder, farbe.getText(), "keine");
         		new AutoQuery().write(newAuto, data.getPassword());
