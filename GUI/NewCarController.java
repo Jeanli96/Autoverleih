@@ -90,11 +90,19 @@ public class NewCarController implements Initializable {
         {
         	if (data.getAuto(kennzeichen.getText()) != null)
         		throw new IllegalArgumentException("Das angegebene Kennzeichen ist schon vorhanden");
-        	Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz.getText()), modell.getText(), holder, farbe.getText(), "keine");
-        	new AutoQuery().write(newAuto, data.getPassword());
         	
-        	data.fullUpdate();
-            buttonAbbrechen();
+        		String tagessatz = this.tagessatz.getText();
+        		System.out.println(tagessatz);
+        		tagessatz = tagessatz.replace(",", ".");
+        		System.out.println(tagessatz);
+        		System.out.println(Float.parseFloat(tagessatz));
+        		
+        		Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz), modell.getText(), holder, farbe.getText(), "keine");
+        		new AutoQuery().write(newAuto, data.getPassword());
+
+            	data.fullUpdate();
+                buttonAbbrechen();
+
         } catch (IllegalArgumentException e) {
         	final Stage dialogStage = new Stage();
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -108,26 +116,13 @@ public class NewCarController implements Initializable {
             });
 
             VBox vbox = new VBox(2);
-            vbox.getChildren().addAll(new Text(e.getMessage()), ok);
-            vbox.setAlignment(Pos.CENTER);
-            vbox.setPadding(new Insets(15));
-
-            dialogStage.setScene(new Scene(vbox));
-            dialogStage.show();
-        } catch (Exception e) {
-        	final Stage dialogStage = new Stage();
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-
-            Button ok = new Button("OK");
-            ok.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    dialogStage.close();
-                }
-            });
-
-            VBox vbox = new VBox(2);
-            vbox.getChildren().addAll(new Text("Felerhafte Eingabe. Bitte die angegebenen Daten überprüfen."), ok);
+            
+            String message = e.getMessage();
+            
+            if (message.contains("For input"))
+            	message = "Fehlerhafte Eingabe. Bitte die angegebenen Daten ueberpruefen.";
+            
+            vbox.getChildren().addAll(new Text(message), ok);
             vbox.setAlignment(Pos.CENTER);
             vbox.setPadding(new Insets(15));
 
