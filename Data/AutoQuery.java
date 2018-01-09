@@ -21,7 +21,7 @@ public class AutoQuery {
 
     Connection conn = null;
 
-    public Auto[] read() {
+    public Auto[] read(String sqlCommand) {
         user = "kmangels_ro";
         password = "Va7tho9a";
 
@@ -42,7 +42,7 @@ public class AutoQuery {
             Statement stmt = conn.createStatement();
 
             //System.out.println("* Anzahl der Zeilen bekommen --> alleAutos dimensionieren");
-            String sqlCommand = "SELECT count(*) FROM Auto";
+            //String sqlCommand = "SELECT count(*) FROM Auto";
             ResultSet rs = stmt.executeQuery(sqlCommand);
             if (rs.next()) {
                 alleAutos = new Auto[rs.getInt(1)];

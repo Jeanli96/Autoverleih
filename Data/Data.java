@@ -26,9 +26,9 @@ public class Data {
     private String password = "old_Data";
 
     public Data() {
-        angKunden = new KundeQuery().read();
-        angAutos = new AutoQuery().read();
-        angVertraege = new VertragQuery().read();
+        angKunden = new KundeQuery().read("SELECT COUNT(*) FROM Kunde");
+        angAutos = new AutoQuery().read("SELECT count(*) FROM Auto");
+        angVertraege = new VertragQuery().read("SELECT count(*) FROM Vertraege");
 
         alleKunden = angKunden;
         alleAutos = angAutos;
@@ -41,9 +41,9 @@ public class Data {
 
     //Fehlende Abfrage/Fehlerbehandlung: nach Update wenn Kunden == null, dann Fehlermelden
     public void fullUpdate() {
-        angKunden = new KundeQuery().read();
-        angAutos = new AutoQuery().read();
-        angVertraege = new VertragQuery().read();
+        angKunden = new KundeQuery().read("SELECT COUNT(*) FROM Kunde");
+        angAutos = new AutoQuery().read("SELECT count(*) FROM Auto");
+        angVertraege = new VertragQuery().read("SELECT count(*) FROM Vertraege");
 
         alleKunden = angKunden;
         alleAutos = angAutos;
@@ -54,6 +54,26 @@ public class Data {
         }
 
         fxmlDC.updateList();
+    }
+    
+    public void update(Datenbank type, String sqlCommand)
+    {
+        switch (type) {
+            case AUTO:
+                angAutos = new AutoQuery().read(sqlCommand);
+                break;
+            case KUNDE:
+                angKunden = new KundeQuery().read(sqlCommand);
+                break;
+            case VERTRAG:
+                angVertraege = new VertragQuery().read(sqlCommand);
+                break;
+        }
+
+        if (angKunden == null || angAutos == null || angVertraege == null) {
+            System.out.println("! Error !\n!!!!!!!!!!!!!\nDaten konnten nicht vollständig aus der Datenbank gelesen werden.");
+        }
+
     }
     
     public void hasCarTime(String kennzeichen, Date pDate, Date rDate) throws IllegalArgumentException
@@ -101,11 +121,11 @@ public class Data {
     }
 
     public int getNextKDID() {
-        return new KundeQuery().read().length + 1;
+        return alleKunden.length + 1;
     }
 
     public int getNextVID() {
-        return new VertragQuery().read().length + 1;
+        return alleVertraege.length + 1;
     }
 
     public String getKennzeichen(int i, boolean all) {
