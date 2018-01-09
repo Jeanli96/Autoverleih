@@ -140,8 +140,8 @@ public class NewContractController implements Initializable {
                 Vertrag neuerVertrag = new Vertrag(data.getNextVID(), Integer.parseInt(customerNo.getText()), kennzeichen.getText(), holder, pDate, rDate, null, null);
                 new VertragQuery().write(neuerVertrag);
                 
-                //PDFCreator pdfc = new PDFCreator(neuerVertrag, data);
-                //pdfc.ausfuehren();
+                PDFCreator pdfc = new PDFCreator(neuerVertrag, data);
+                pdfc.ausfuehren();
 
                 data.fullUpdate();
                 buttonAbbruch();
