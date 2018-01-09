@@ -1,4 +1,4 @@
-package Tests;
+package tests.Auto;
 
 
 
@@ -39,8 +39,10 @@ package Tests;
 	         {"3M-IF-2323", "Das angegebene Kennzeichen entfaellt der Norm."}, {"", "Das angegebene Kennzeichen ist zu kurz." },
 	         {"I-M--123", "Das angegebene Kennzeichen entfaellt der Norm." }, {"I-M\\-123", "Das angegebene Kennzeichen entfaellt der Norm." },
 	         {"I_M123", "Das angegebene Kennzeichen entfaellt der Norm." }, {"IMG123", "Das angegebene Kennzeichen entfaellt der Norm." },
-	         {"ha-ll-oo1o", "Das angegebene Kennzeichen entfaellt der Norm." }, {"sdfdsfd", "Das angegebene Kennzeichen entfaellt der Norm." },
-	         {"IM-MK-111", "" }, {"bd\b$fgdfg", "Das angegebene Kennzeichen entfaellt der Norm."}});
+	         {"ha-ll-oo1o", "Das angegebene Kennzeichen entfaellt der Norm." }, {"IM-2-123", "Das angegebene Kennzeichen entfaellt der Norm." },
+	         {"IM-MK-111", "" }, {"bd\b$fgdfg", "Das angegebene Kennzeichen entfaellt der Norm."}, {"1-2-123", "Das angegebene Kennzeichen entfaellt der Norm." },
+                 {"AMKW-I-13", "Das angegebene Kennzeichen entfaellt der Norm." }, {"I2-123", "Das angegebene Kennzeichen entfaellt der Norm." },
+                 {"AM-KW-1\\?", "Das angegebene Kennzeichen entfaellt der Norm." }});
 	    }
 
 	    private String fInput;

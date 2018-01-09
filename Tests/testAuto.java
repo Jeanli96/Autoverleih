@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-package Tests;
+package tests.Auto;
 
  
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import Data.Auto;
 
 /**
@@ -20,7 +12,6 @@ import Data.Auto;
  */
 public class testAuto{
     
- //   private List list;
     
     
     String kennzeichen;
@@ -31,7 +22,7 @@ public class testAuto{
     String typ;
     String farbe;
     String maengel;
-
+    Auto testauto;
     
     @Before 
     public void setup(){
@@ -44,64 +35,10 @@ public class testAuto{
      typ = "Limousine";
      farbe = "Blau";
      maengel = "Keine MÃ¤ngel";
-    
+     testauto = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
 }
   
-    
-    //zu kurzes Kennzeichen
- /**   @Test
-    public void testAnlegen_kfz_kurz() {
-        
-        kennzeichen="K1";
-        Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
-        String test_erg = test.anlegen();
-        String expected = "short_kfz";
-        Assert.assertTrue(expected.equals(test_erg));
-        setup();
-    }
-    
-    @Test
-    public void testAnlegen_kfz_lang() {
-        
-        kennzeichen="KM-MSS-2341";
-        Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
-        String test_erg = test.anlegen();
-        String expected = "long_kfz";
-        Assert.assertTrue(expected.equals(test_erg));
-        setup();
-    } **/
-    
-//    @Test
-//     public void testAnlegen_kfz_content() {
-//        
-//        List<String> tests = new ArrayList<>(); 
-//        tests.add("");
-//        tests.add("132");
-//        tests.add("a-b-199999");
-//        tests.add("abds-a-123");
-//        tests.add("A1-AA-12");
-//        
-//        for (int i = 0; i < tests.size(); i++)
-//        {
-//        
-//        kennzeichen=tests.get(i);
-//        Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
-//        String test_erg = test.anlegen();
-//        String expected = "long_kfz";
-//        Assert.assertTrue(expected.equals(test_erg));
-//        setup();
-//        }
-//    }
-    
-//        List<String> testi = new ArrayList<>(); 
-//        t
-//        tests.add("132");
-//        tests.add("a-b-199999");
-//        tests.add("abds-a-123");
-//        tests.add("A1-AA-12");
-        
-    
-            
+                
        @Test
      public void testAnlegen_kfz_short() {
         
@@ -171,7 +108,7 @@ public class testAuto{
         setup();
         
     }
-     
+     /** nur zwei Tests nÃ¶tig fÃ¼r Sitzplaetze, andere Fehler werden durch GUI abgefangen **/
      @Test
      public void testAnlegen_seats_high() {
          
@@ -195,29 +132,7 @@ public class testAuto{
          
      }
     
-   /**  @Test
-     	public void testAnlegen_tagessatz_kommas(){
-    	 
-    	 tagessatz = (float) 0,123;
-         String test_erg = new String();
-         String expected = "Der Tagessatz darf nicht mehr als 2 Nachkommastellen haben.";
-         try{        
-         Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
-         }
-         catch (Exception e)
-         {
-         	test_erg = e.getMessage();        	
-         } 
-         
-         
-  
-         Assert.assertTrue(expected.equals(test_erg));
-         setup();
-         }
-    	 **/
-     
-     
-     //Nullwerte werden bei der Eingabe behandelt und können deshalb nicht getestet werden
+   
      
     @Test  
     public void testAnlegen_tagessatz_punkt(){
@@ -258,29 +173,97 @@ public class testAuto{
         Assert.assertTrue(expected.equals(""));
         setup();
    	 }
-    /**  Kommawerte werden vorher behandelt und in Punkte geändert
-    @Test  
-    public void testAnlegen_tagessatz_kommaok(){
-   	 
-   	 tagessatz = (float) 0,23;
-        String test_erg = new String();
-        String expected = "";
-        try{        
-        Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
-        }
-        catch (Exception e)
-        {
-        	test_erg = e.getMessage();        	
-        }
-        
-        
- 
-        Assert.assertTrue(expected.equals(test_erg));
-        setup();
-   	 
-    }
-    **/
     
+    //Funktionstests
+    @Test
+    public void tauto_get_kfz(){
+    
+          
+        String test_erg = new String(testauto.getKennzeichen());
+               
+        
+        Assert.assertTrue(test_erg.equals(kennzeichen));
+        setup();
+   	 }
+    
+     @Test
+    public void tauto_get_Marke(){
+    
+          
+        String test_erg = new String(testauto.getMarke());
+               
+        
+        Assert.assertTrue(test_erg.equals(marke));
+        setup();
+   	 }
+    
+     @Test
+    public void tauto_get_seats(){
+    
+          
+        int test_erg = testauto.getSitzplaetze();
+               
+        
+        Assert.assertTrue(test_erg == sitzplaetze);
+        setup();
+   	 }
+    
+     @Test
+    public void tauto_get_Tagessatz(){
+    
+          
+        float test_erg = testauto.getTagessatz();
+               
+        
+        Assert.assertTrue((int)(100 *test_erg) == (int)(100* tagessatz));
+        setup();
+   	 }
+    
+
+      @Test
+    public void tauto_get_Modell(){
+    
+          
+        String test_erg = new String(testauto.getModell());
+               
+        
+        Assert.assertTrue(test_erg.equals(modell));
+        setup();
+   	 }
+    
+       @Test
+    public void tauto_get_Typ(){
+    
+          
+        String test_erg = new String(testauto.getTyp());
+               
+        
+        Assert.assertTrue(test_erg.equals(typ));
+        setup();
+   	 }
+    
+    
+       @Test
+    public void tauto_get_Farbe(){
+    
+          
+        String test_erg = new String(testauto.getFarbe());
+               
+        
+        Assert.assertTrue(test_erg.equals(farbe));
+        setup();
+   	 }
+    
+       @Test
+    public void tauto_get_Maengel(){
+    
+          
+        String test_erg = new String(testauto.getMaengel());
+               
+        
+        Assert.assertTrue(test_erg.equals(maengel));
+        setup();
+   	 }
     
     @Test
     public void testAnlegen_tagessatz_low() {
@@ -303,7 +286,7 @@ public class testAuto{
          setup();
         
       }
-   /**  NULL werte werden vorher behandelt und ausgeschlossen, Java wirft eigenen Error - Test entfällt
+   /**  NULL werte werden vorher behandelt und ausgeschlossen, Java wirft eigenen Error - Test entfï¿½llt
     @Test
     public void testAnlegen_tagessatz_null() {
         
