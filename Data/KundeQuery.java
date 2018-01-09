@@ -21,7 +21,7 @@ public class KundeQuery {
 
     Connection conn = null;
 
-    public Kunde[] read() {
+    public Kunde[] read(String sqlCommand) {
         user = "kmangels_ro";
         password = "Va7tho9a";
 
@@ -42,7 +42,7 @@ public class KundeQuery {
             Statement stmt = conn.createStatement();
 
             //System.out.println("* Anzahl der Zeilen bekommen --> alleKunden dimensionieren");
-            String sqlCommand = "SELECT COUNT(*) FROM Kunde";
+            //String sqlCommand = "SELECT COUNT(*) FROM Kunde";
             ResultSet rs = stmt.executeQuery(sqlCommand);
             if (rs.next()) {
                 alleKunden = new Kunde[rs.getInt(1)];

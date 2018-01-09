@@ -26,7 +26,7 @@ public class VertragQuery {
 
     Connection conn = null;
 
-    public Vertrag[] read() {
+    public Vertrag[] read(String sqlCommand) {
         user = "kmangels_ro";
         password = "Va7tho9a";
 
@@ -47,7 +47,7 @@ public class VertragQuery {
             Statement stmt = conn.createStatement();
 
             //System.out.println("* Anzahl der Zeilen bekommen --> alleAutos dimensionieren");
-            String sqlCommand = "SELECT count(*) FROM Vertraege";
+            //String sqlCommand = "SELECT count(*) FROM Vertraege";
             ResultSet rs = stmt.executeQuery(sqlCommand);
             if (rs.next()) {
                 alleVertraege = new Vertrag[rs.getInt(1)];
