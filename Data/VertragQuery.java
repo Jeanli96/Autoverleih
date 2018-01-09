@@ -47,14 +47,14 @@ public class VertragQuery {
             Statement stmt = conn.createStatement();
 
             //System.out.println("* Anzahl der Zeilen bekommen --> alleAutos dimensionieren");
-            //String sqlCommand = "SELECT count(*) FROM Vertraege";
-            ResultSet rs = stmt.executeQuery(sqlCommand);
+            String sqlCount = "SELECT count(*) FROM Vertraege" + sqlCommand;
+            ResultSet rs = stmt.executeQuery(sqlCount);
             if (rs.next()) {
                 alleVertraege = new Vertrag[rs.getInt(1)];
 
                 //System.out.println("* Abfrage beginnen");
-                sqlCommand = "SELECT * FROM Vertraege";
-                rs = stmt.executeQuery(sqlCommand);
+                //sqlCommand = "SELECT * FROM Vertraege";
+                rs = stmt.executeQuery("SELECT * FROM Vertraege" + sqlCommand);
 
                 for (int i = 0; rs.next(); i++) {
                     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

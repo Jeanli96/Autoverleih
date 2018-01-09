@@ -9,6 +9,7 @@ import GUI.FXMLDocumentController;
 
 import java.sql.Date;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
@@ -26,9 +27,9 @@ public class Data {
     private String password = "old_Data";
 
     public Data() {
-        angKunden = new KundeQuery().read("SELECT COUNT(*) FROM Kunde");
-        angAutos = new AutoQuery().read("SELECT count(*) FROM Auto");
-        angVertraege = new VertragQuery().read("SELECT count(*) FROM Vertraege");
+        angKunden = new KundeQuery().read("");
+        angAutos = new AutoQuery().read("");
+        angVertraege = new VertragQuery().read("");
 
         alleKunden = angKunden;
         alleAutos = angAutos;
@@ -41,9 +42,9 @@ public class Data {
 
     //Fehlende Abfrage/Fehlerbehandlung: nach Update wenn Kunden == null, dann Fehlermelden
     public void fullUpdate() {
-        angKunden = new KundeQuery().read("SELECT COUNT(*) FROM Kunde");
-        angAutos = new AutoQuery().read("SELECT count(*) FROM Auto");
-        angVertraege = new VertragQuery().read("SELECT count(*) FROM Vertraege");
+        angKunden = new KundeQuery().read("");
+        angAutos = new AutoQuery().read("");
+        angVertraege = new VertragQuery().read("");
 
         alleKunden = angKunden;
         alleAutos = angAutos;
@@ -69,11 +70,12 @@ public class Data {
                 angVertraege = new VertragQuery().read(sqlCommand);
                 break;
         }
-
+        
         if (angKunden == null || angAutos == null || angVertraege == null) {
             System.out.println("! Error !\n!!!!!!!!!!!!!\nDaten konnten nicht vollständig aus der Datenbank gelesen werden.");
         }
-
+        
+        fxmlDC.updateList();
     }
     
     public void hasCarTime(String kennzeichen, Date pDate, Date rDate) throws IllegalArgumentException
@@ -193,8 +195,11 @@ public class Data {
             switch (type) {
                 case AUTO:
                     holder = new String[angAutos.length];
+                    DecimalFormat df = new DecimalFormat("0.00");
                     for (int i = 0; i < holder.length; i++) {
-                        holder[i] = angAutos[i].getMarke() + " | " + angAutos[i].getModell();
+                        
+                        
+                        holder[i] = angAutos[i].getMarke() + " | " + angAutos[i].getModell() + " | Tagessatz: " + df.format(angAutos[i].getTagessatz()) + "€.";
                     }
                     break;
                 case KUNDE:

@@ -42,14 +42,14 @@ public class KundeQuery {
             Statement stmt = conn.createStatement();
 
             //System.out.println("* Anzahl der Zeilen bekommen --> alleKunden dimensionieren");
-            //String sqlCommand = "SELECT COUNT(*) FROM Kunde";
-            ResultSet rs = stmt.executeQuery(sqlCommand);
+            String sqlCount= "SELECT COUNT(*) FROM Kunde" + sqlCommand;
+            ResultSet rs = stmt.executeQuery(sqlCount);
             if (rs.next()) {
                 alleKunden = new Kunde[rs.getInt(1)];
 
                 //System.out.println("* Abfrage beginnen");
-                sqlCommand = "SELECT * FROM Kunde";
-                rs = stmt.executeQuery(sqlCommand);
+                //sqlCommand = "SELECT * FROM Kunde";
+                rs = stmt.executeQuery("SELECT * FROM Kunde" + sqlCommand);
 
                 for (int i = 0; rs.next(); i++) {
                     alleKunden[i] = new Kunde(rs.getInt("KDID"), rs.getString("Name"), rs.getString("Vorname"), rs.getString("PLZ"), rs.getString("Strasse"),

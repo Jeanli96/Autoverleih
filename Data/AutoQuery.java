@@ -42,14 +42,15 @@ public class AutoQuery {
             Statement stmt = conn.createStatement();
 
             //System.out.println("* Anzahl der Zeilen bekommen --> alleAutos dimensionieren");
-            //String sqlCommand = "SELECT count(*) FROM Auto";
-            ResultSet rs = stmt.executeQuery(sqlCommand);
+            String sqlCount = "SELECT count(*) FROM Auto" + sqlCommand;
+            ResultSet rs = stmt.executeQuery(sqlCount);
             if (rs.next()) {
                 alleAutos = new Auto[rs.getInt(1)];
 
                 //System.out.println("* Abfrage beginnen");
-                sqlCommand = "SELECT * FROM Auto";
-                rs = stmt.executeQuery(sqlCommand);
+                //sqlCommand = "SELECT * FROM Auto";
+                                
+                rs = stmt.executeQuery("SELECT * FROM Auto" + sqlCommand);
 
                 for (int i = 0; rs.next(); i++) {
                     alleAutos[i] = new Auto(rs.getString("Kennzeichen"), rs.getString("Marke"), rs.getInt("Sitzplaetze"), rs.getFloat("Tagessatz"),
@@ -69,7 +70,6 @@ public class AutoQuery {
             //System.out.println("VendorError: " + sqle.getErrorCode());
             //sqle.printStackTrace();
         }
-
         return alleAutos;
     }
 

@@ -49,39 +49,43 @@
                                         <AnchorPane prefHeight="95.0" prefWidth="176.0">
                                           <children>
                                             <Label alignment="CENTER" prefHeight="17.0" prefWidth="186.0" text="Marke" />
-                                            <CheckBox layoutY="17.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Audi" />
-                                            <CheckBox layoutX="82.0" layoutY="17.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Fiat" />
-                                            <CheckBox layoutY="34.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Ford" />
-                                            <CheckBox layoutX="82.0" layoutY="34.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Honda" />
-                                            <CheckBox layoutY="51.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Mercedes" />
-                                            <CheckBox layoutX="82.0" layoutY="51.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Opel" />
-                                            <CheckBox layoutY="68.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="VW" />
+                                            <CheckBox fx:id="audi" layoutY="17.0" mnemonicParsing="false" onAction="#sort" prefHeight="17.0" prefWidth="82.0" text="Audi" />
+                                            <CheckBox fx:id="fiat" layoutX="82.0" layoutY="17.0" mnemonicParsing="false" onAction="#sort" prefHeight="17.0" prefWidth="82.0" text="Fiat" />
+                                            <CheckBox fx:id="ford" layoutY="34.0" mnemonicParsing="false" onAction="#sort" prefHeight="17.0" prefWidth="82.0" text="Ford" />
+                                            <CheckBox fx:id="honda" layoutX="82.0" layoutY="34.0" mnemonicParsing="false" onAction="#sort" prefHeight="17.0" prefWidth="82.0" text="Honda" />
+                                            <CheckBox fx:id="mercedes" layoutY="51.0" mnemonicParsing="false" onAction="#sort" prefHeight="17.0" prefWidth="82.0" text="Mercedes" />
+                                            <CheckBox fx:id="opel" layoutX="82.0" layoutY="51.0" mnemonicParsing="false" onAction="#sort" prefHeight="17.0" prefWidth="82.0" text="Opel" />
+                                            <CheckBox fx:id="vw" layoutY="68.0" mnemonicParsing="false" onAction="#sort" prefHeight="17.0" prefWidth="82.0" text="VW" />
                                             <ScrollBar layoutX="165.0" layoutY="5.0" orientation="VERTICAL" prefHeight="85.0" prefWidth="14.0" />
                                           </children>
                                         </AnchorPane>
                                         <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
                                           <children>
                                             <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Typ" />
-                                            <CheckBox layoutX="14.0" layoutY="17.0" mnemonicParsing="false" text="Kleinwagen" />
-                                            <CheckBox layoutX="14.0" layoutY="39.0" mnemonicParsing="false" text="Kombi" />
-                                            <CheckBox layoutX="14.0" layoutY="64.0" mnemonicParsing="false" text="Limousine" />
-                                            <CheckBox layoutX="100.0" layoutY="17.0" mnemonicParsing="false" text="Van" />
-                                            <CheckBox layoutX="100.0" layoutY="41.0" mnemonicParsing="false" text="Transporter" />
+                                            <CheckBox fx:id="kleinwagen" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#sort" text="Kleinwagen" />
+                                            <CheckBox fx:id="kombi" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" onAction="#sort" text="Kombi" />
+                                            <CheckBox fx:id="limousine" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#sort" text="Limousine" />
+                                            <CheckBox fx:id="van" layoutX="100.0" layoutY="17.0" mnemonicParsing="false" onAction="#sort" text="Van" />
+                                            <CheckBox fx:id="transporter" layoutX="100.0" layoutY="39.0" mnemonicParsing="false" onAction="#sort" text="Transporter" />
                                           </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutY="143.0" prefHeight="47.4" prefWidth="200.0">
+                                        <AnchorPane layoutY="151.0" prefHeight="47.4" prefWidth="200.0">
                                           <children>
                                             <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Tagessatz" />
-                                            <CheckBox layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="Aufsteigend" />
-                                            <CheckBox layoutX="100.0" layoutY="16.0" mnemonicParsing="false" text="Absteigend" />
+                                            <CheckBox fx:id="ascending" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#sort" text="Aufsteigend" />
+                                            <CheckBox fx:id="descending" layoutX="100.0" layoutY="16.0" mnemonicParsing="false" onAction="#sort" text="Absteigend" />
                                           </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutY="95.0" prefHeight="47.4" prefWidth="200.0">
+                                        <AnchorPane layoutY="95.0" prefHeight="59.0" prefWidth="200.0">
                                           <children>
                                             <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Sitzplätze" />
-                                            <CheckBox layoutX="14.0" layoutY="17.0" mnemonicParsing="false" text="2" />
-                                            <CheckBox layoutX="72.0" layoutY="17.0" mnemonicParsing="false" text="4" />
-                                            <CheckBox layoutX="137.0" layoutY="17.0" mnemonicParsing="false" text="6" />
+                                            <CheckBox fx:id="seating2" layoutX="14.0" layoutY="37.0" mnemonicParsing="false" onAction="#sort" text="2" />
+                                            <CheckBox fx:id="seating4" layoutX="59.0" layoutY="37.0" mnemonicParsing="false" onAction="#sort" text="4" />
+                                            <CheckBox fx:id="seating6" layoutX="103.0" layoutY="37.0" mnemonicParsing="false" onAction="#sort" text="6" />
+                                                                  <CheckBox fx:id="seating1" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#sort" text="1" />
+                                                                  <CheckBox fx:id="seating3" layoutX="59.0" layoutY="17.0" mnemonicParsing="false" onAction="#sort" text="3" />
+                                                                  <CheckBox fx:id="seating5" layoutX="103.0" layoutY="17.0" mnemonicParsing="false" onAction="#sort" text="5" />
+                                                                  <CheckBox fx:id="seating7" layoutX="143.0" layoutY="17.0" mnemonicParsing="false" onAction="#sort" text="7" />
                                           </children>
                                         </AnchorPane>
                                         <AnchorPane layoutY="333.0" prefHeight="93.0" prefWidth="200.0">
@@ -91,12 +95,11 @@
                                             <Button fx:id="carDelete" layoutX="36.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Löschen" />
                                           </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutY="285.0" prefHeight="47.4" prefWidth="200.0">
+                                        <AnchorPane layoutY="274.0" prefHeight="59.0" prefWidth="200.0">
                                           <children>
-                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Verfügbarkeit" />
-                                            <CheckBox layoutX="14.0" layoutY="16.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="39.0" text="Ja" />
-                                            <CheckBox layoutX="53.0" layoutY="16.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="76.0" text="reserviert" />
-                                            <CheckBox layoutX="129.0" layoutY="16.0" mnemonicParsing="false" text="Nein" />
+                                            <Label alignment="CENTER" layoutX="14.0" layoutY="-2.0" prefHeight="36.0" prefWidth="160.0" text="Verfügbar in dennächsten 14 Tagen" textAlignment="CENTER" wrapText="true" />
+                                            <CheckBox fx:id="available" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#sort" prefHeight="17.0" prefWidth="39.0" text="Ja" />
+                                            <CheckBox fx:id="notAvailable" layoutX="100.0" layoutY="33.0" mnemonicParsing="false" onAction="#sort" text="Nein" />
                                           </children>
                                         </AnchorPane>
                                       </children>
