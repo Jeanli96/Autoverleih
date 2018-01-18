@@ -41,7 +41,7 @@ public class EditCarController implements Initializable {
     private Button abbruch;
 
     @FXML
-    private Label kennzeichen;
+    private TextField kennzeichen;
     @FXML
     private Label marke;
     @FXML
@@ -54,28 +54,43 @@ public class EditCarController implements Initializable {
     private TextField farbe;
     @FXML
     private TextField tagessatz;
-        
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         //EditCarStage stage = EditCarStage.stage;          
     }
-    
-    @FXML
-    private void buttonBearbeiten() {
-    	
-    	try 
-    	{
-    		String tagessatz = this.tagessatz.getText();
-    		tagessatz = tagessatz.replace(",", ".");
-    		
-    		Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz), modell.getText(), fahrzeugtyp.getText(), farbe.getText(), "keine");
-    		new AutoQuery().edit(newAuto);
 
-    		data.fullUpdate();
-    		buttonAbbrechen();
-    	} catch (IllegalArgumentException e) {
-        	final Stage dialogStage = new Stage();
+    @FXML
+    private void buttonBearbeiten() { 
+
+        try {
+            String tagessatz = this.tagessatz.getText();
+            tagessatz = tagessatz.replace(",", ".");
+
+            Auto newAuto = new Auto(sAuto.getAutoID(), kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz), modell.getText(), fahrzeugtyp.getText(), farbe.getText(), "keine");
+            new AutoQuery().edit(newAuto);
+
+            final Stage info = new Stage();
+            info.initModality(Modality.WINDOW_MODAL);
+            Button ok = new Button("OK");
+            ok.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    info.close();
+                }
+            });
+            VBox vbox = new VBox(2);
+            vbox.getChildren().addAll(new Label("Das Auto mit dem Kennzeichen " + kennzeichen.getText() + " wurde bearbeitet."), ok);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.setPadding(new Insets(15));
+            info.setScene(new Scene(vbox));
+            info.show();
+
+            data.fullUpdate();
+            buttonAbbrechen();
+        } catch (IllegalArgumentException e) {
+            final Stage dialogStage = new Stage();
             dialogStage.initModality(Modality.WINDOW_MODAL);
 
             Button ok = new Button("OK");
@@ -87,12 +102,13 @@ public class EditCarController implements Initializable {
             });
 
             VBox vbox = new VBox(2);
-            
+
             String message = e.getMessage();
-            
-            if (message.contains("For input"))
-            	message = "Fehlerhafte Eingabe. Bitte die angegebenen Daten ueberpruefen.";
-            
+
+            if (message.contains("For input")) {
+                message = "Fehlerhafte Eingabe. Bitte die angegebenen Daten ueberpruefen.";
+            }
+
             vbox.getChildren().addAll(new Text(message), ok);
             vbox.setAlignment(Pos.CENTER);
             vbox.setPadding(new Insets(15));
@@ -107,9 +123,8 @@ public class EditCarController implements Initializable {
         Stage stage = (Stage) abbruch.getScene().getWindow();
         stage.close();
     }
-    
-    public void setStage (Auto selectedAuto)
-    {        
+
+    public void setStage(Auto selectedAuto) {
         sAuto = selectedAuto;
 
         kennzeichen.setText(sAuto.getKennzeichen());
@@ -120,9 +135,8 @@ public class EditCarController implements Initializable {
         farbe.setText(sAuto.getFarbe());
         tagessatz.setText("" + sAuto.getTagessatz());
     }
-    
-    public void setData(Data data)
-    {
+
+    public void setData(Data data) {
         this.data = data;
     }
 }

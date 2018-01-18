@@ -15,7 +15,7 @@ public class Vertrag {
     
     private int vertragsID;
     private int kdID;
-    private String kennzeichen;
+    private int autoID;
     private String zFahrer;
     private Date abholtermin;
     private Date ruecktermin;
@@ -23,11 +23,11 @@ public class Vertrag {
     private Date tatRuecktermin;
     
 
-    public Vertrag(int vertragsID, int kdID, String kennzeichen, String zFahrer, Date abholtermin, Date ruecktermin, Date tatAbholtermin, Date tatRuecktermin) 
+    public Vertrag(int vertragsID, int kdID, int autoID, String zFahrer, Date abholtermin, Date ruecktermin, Date tatAbholtermin, Date tatRuecktermin) 
     {
         this.vertragsID = vertragsID;
         this.kdID = kdID;
-        this.kennzeichen = kennzeichen;
+        this.autoID = autoID;
         this.zFahrer  = zFahrer;
         this.abholtermin = abholtermin;
         this.ruecktermin = ruecktermin;
@@ -39,7 +39,7 @@ public class Vertrag {
     public String toString() {
         String text = "Vertrags_ID: " + vertragsID + "\n"
                 + "Kunden_ID: " + kdID + "\n"
-                + "Kennzeichen: " + kennzeichen + "\n"
+                + "Kennzeichen: " + autoID + "\n"
                 + "Zweitfahrer: " + zFahrer + "\n"
                 + "Abholtermin: " + abholtermin + "\n"
                 + "Rückgabetermin: " + ruecktermin + "\n"
@@ -53,7 +53,7 @@ public class Vertrag {
     public String anlegen() {
         String text = "'" + vertragsID + "',"
                 + "'" + kdID + "',"
-                + "'" + kennzeichen + "',"
+                + "'" + autoID + "',"
                 + "'" + zFahrer + "',"
                 + "'" + abholtermin + "',"
                 + "'" + ruecktermin + "',";
@@ -80,8 +80,8 @@ public class Vertrag {
         return kdID;
     }
 
-    public String getKennzeichen() {
-        return kennzeichen;
+    public int getAutoID() {
+        return autoID;
     }
 
     public String getZweitfahrer() {

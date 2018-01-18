@@ -53,7 +53,7 @@ public class AutoQuery {
                 rs = stmt.executeQuery("SELECT * FROM Auto" + sqlCommand);
 
                 for (int i = 0; rs.next(); i++) {
-                    alleAutos[i] = new Auto(rs.getString("Kennzeichen"), rs.getString("Marke"), rs.getInt("Sitzplaetze"), rs.getFloat("Tagessatz"),
+                    alleAutos[i] = new Auto(rs.getInt("Auto_ID"), rs.getString("Kennzeichen"), rs.getString("Marke"), rs.getInt("Sitzplaetze"), rs.getFloat("Tagessatz"),
                             rs.getString("Modell"), rs.getString("Typ"), rs.getString("Farbe"), rs.getString("Maengel"));
                     //System.out.println(alleAutos[i].toString());
                 }
@@ -109,43 +109,6 @@ public class AutoQuery {
             //sqle.printStackTrace();
         }
     }
-
-    public void delete(String kennzeichen) {
-
-        user = "kmangels";
-        password = "Eid3aih3";
-
-        try {
-            //System.out.println("* Treiber laden");
-            Class.forName("org.gjt.mm.mysql.Driver").newInstance();
-        } catch (Exception e) {
-            System.err.println("Treiber konnte nicht geladen werden.");
-            //e.printStackTrace();
-        }
-        try {
-            //System.out.println("* Verbindung aufbauen");
-            String url = "jdbc:mysql://" + hostname + ":" + port + "/" + dbname;
-            conn = DriverManager.getConnection(url, user, password);
-
-            //System.out.println("* Statement beginnen");
-            Statement stmt = conn.createStatement();
-
-            //System.out.println("* Einfuegen");
-            String sqlCommand = "DELETE FROM Auto WHERE Kennzeichen = '" + kennzeichen + "';";
-            stmt.executeUpdate(sqlCommand);
-
-            //System.out.println("* Statement beenden");
-            stmt.close();
-
-            //System.out.println("* Datenbank-Verbindung beenden");
-            conn.close();
-        } catch (SQLException sqle) {
-            //System.out.println("SQLException: " + sqle.getMessage());
-            //System.out.println("SQLState: " + sqle.getSQLState());
-            //System.out.println("VendorError: " + sqle.getErrorCode());
-            //sqle.printStackTrace();
-        }
-    }
     
     public void edit(Auto auto) {
 
@@ -168,7 +131,7 @@ public class AutoQuery {
             Statement stmt = conn.createStatement();
 
             //System.out.println("* Einfuegen");
-            String sqlCommand = "UPDATE Auto SET Marke = '" + auto.getMarke() + "', Sitzplaetze = '" + auto.getSitzplaetze() + "', Tagessatz = '" + auto.getTagessatz() + "', Modell = '" + auto.getModell() + "', Typ = '" + auto.getTyp() + "', Farbe = '" + auto.getFarbe() + "', Maengel = '" + auto.getMaengel() + "' WHERE Kennzeichen = '" + auto.getKennzeichen() + "';";
+            String sqlCommand = "UPDATE Auto SET Kennzeichen = '" + auto.getKennzeichen() + "', Marke = '" + auto.getMarke() + "', Sitzplaetze = '" + auto.getSitzplaetze() + "', Tagessatz = '" + auto.getTagessatz() + "', Modell = '" + auto.getModell() + "', Typ = '" + auto.getTyp() + "', Farbe = '" + auto.getFarbe() + "', Maengel = '" + auto.getMaengel() + "' WHERE Auto_ID = '" + auto.getAutoID() + "';";
             stmt.executeUpdate(sqlCommand);
 
             //System.out.println("* Statement beenden");

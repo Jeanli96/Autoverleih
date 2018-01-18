@@ -30,12 +30,12 @@ public class PDFCreator {
         this.data = data;
     }
     
-    public void ausführen() throws IOException 
+    public void ausfuehren() throws IOException 
     {
         String name = data.getKunde(vertrag.getKundenID()-1, true).getName();
         String vorname = data.getKunde(vertrag.getKundenID()-1, true).getVorname();
         int kundenid = vertrag.getKundenID();
-        String kfz = vertrag.getKennzeichen();
+        String kfz = data.getKennzeichen(vertrag.getAutoID()-1, true);
         String zweitfahrer = vertrag.getZweitfahrer();
         float tagessatz = data.getAuto(kfz).getTagessatz();
         Date abholtermin = vertrag.getAbholtermin();
@@ -45,7 +45,7 @@ public class PDFCreator {
         String modell = data.getAuto(kfz).getModell();
         
         
-      File file = new File("C:/Users/Jessi/Documents/NetBeansProjects/SWT-Autovermietung/Vertrag.pdf");
+      File file = new File("Vertrag.pdf");
       PDDocument document = PDDocument.load(file);
      
       
@@ -108,7 +108,7 @@ public class PDFCreator {
     
 
       
-      document.save(new File("C:/Users/Jessi/Desktop/Auto_Vertrag/Vertrag_"+vertragsnr+".pdf"));
+      document.save(new File("Vertrag_"+vertragsnr+".pdf"));
 
      
       document.close();

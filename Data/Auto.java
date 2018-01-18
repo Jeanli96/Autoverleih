@@ -11,6 +11,7 @@ package Data;
  */
 public class Auto {
 
+    private int autoID;
     private String kennzeichen;
     private String marke;
     private int sitzplaetze;
@@ -21,17 +22,17 @@ public class Auto {
     private String maengel;
     
 
-    public Auto(String kennzeichen, String marke, int sitzplaetze, float tagessatz, String modell, String typ, String farbe, String maengel) throws IllegalArgumentException {
+    public Auto(int autoID, String kennzeichen, String marke, int sitzplaetze, float tagessatz, String modell, String typ, String farbe, String maengel) throws IllegalArgumentException {
     	
     	try{
             if ( kennzeichen.length() < 5 )
                 throw new IllegalArgumentException("Das angegebene Kennzeichen ist zu kurz.");   
-            if ( kennzeichen.length() > 10  )
+            if ( kennzeichen.length() > 10  && !kennzeichen.equals("Auto nicht mehr im Besitz"))
             	throw new IllegalArgumentException("Das angegebene Kennzeichen ist zu lang.");                        
         //  TESTEN nach Zahlen und Buchstaben vorn und hinten
             
             String pattern = "^[A-Z]{1,3}-[A-Z]{1,2}-[0-9]{1,4}";
-            if ( !kennzeichen.matches(pattern))
+            if (!kennzeichen.matches(pattern) && !kennzeichen.equals("Auto nicht mehr im Besitz"))
                 throw new IllegalArgumentException("Das angegebene Kennzeichen entfaellt der Norm.");
             
             if (sitzplaetze < 1)
@@ -50,7 +51,7 @@ public class Auto {
             		throw new IllegalArgumentException("Der Tagessatz darf nicht mehr als 2 Nachkommastellen haben.");
             }
             
-        
+            this.autoID= autoID;
             this.kennzeichen = kennzeichen;
             this.marke = marke;
             this.sitzplaetze = sitzplaetze;
@@ -62,7 +63,7 @@ public class Auto {
     	} finally{}
         
     }
-
+    
     @Override
     public String toString() {
         String text = "Kennzeichen: " + kennzeichen + "\n"
@@ -79,7 +80,8 @@ public class Auto {
     }
 
     public String anlegen() {
-        String text = "'" + kennzeichen + "',"
+        String text = "'" + autoID + "',"
+                + "'" + kennzeichen + "',"
                 + "'" + marke + "',"
                 + "'" + sitzplaetze + "',"
                 + "'" + tagessatz + "',"
@@ -90,6 +92,16 @@ public class Auto {
                  
 
         return text;
+    }
+    
+    public void deleteKennzeichen()
+    {
+        kennzeichen = "Auto nicht mehr im Besitz";
+    }
+    
+    public int getAutoID()
+    {
+        return autoID;
     }
 
     public String getKennzeichen() {

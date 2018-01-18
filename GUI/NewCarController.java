@@ -21,6 +21,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -35,12 +36,12 @@ import javafx.stage.Stage;
 public class NewCarController implements Initializable {
 
     private Data data;
-    
+
     @FXML
     private Button anlegen;
     @FXML
     private Button abbruch;
-    
+
     @FXML
     private TextField kennzeichen;
     @FXML
@@ -63,12 +64,11 @@ public class NewCarController implements Initializable {
     }
 
     @FXML
-    private void buttonAnlegen() { 
-        
+    private void buttonAnlegen() {
+
         String holder = "";
-        
-        switch (fahrzeugtyp.getSelectionModel().getSelectedIndex())
-        {
+
+        switch (fahrzeugtyp.getSelectionModel().getSelectedIndex()) {
             case 0:
                 holder = "Kleinwagen";
                 break;
@@ -85,23 +85,39 @@ public class NewCarController implements Initializable {
                 holder = "Limousine";
                 break;
         }
-        
-        try
-        {
-        	if (data.getAuto(kennzeichen.getText()) != null)
-        		throw new IllegalArgumentException("Das angegebene Kennzeichen ist schon vorhanden");
-        	
-        		String tagessatz = this.tagessatz.getText();
-        		tagessatz = tagessatz.replace(",", ".");
-        		
-        		Auto newAuto = new Auto(kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz), modell.getText(), holder, farbe.getText(), "keine");
-        		new AutoQuery().write(newAuto, data.getPassword());
 
-            	data.fullUpdate();
-                buttonAbbrechen();
+        try {
+            if (data.getAuto(kennzeichen.getText()) != null) {
+                throw new IllegalArgumentException("Das angegebene Kennzeichen ist schon vorhanden");
+            }
+
+            String tagessatz = this.tagessatz.getText();
+            tagessatz = tagessatz.replace(",", ".");
+
+            Auto newAuto = new Auto(data.getNextAutoID(), kennzeichen.getText(), marke.getText(), Integer.parseInt(sitzplaetze.getText()), Float.parseFloat(tagessatz), modell.getText(), holder, farbe.getText(), "keine");
+            new AutoQuery().write(newAuto, data.getPassword());
+
+            final Stage info = new Stage();
+            info.initModality(Modality.WINDOW_MODAL);
+            Button ok = new Button("OK");
+            ok.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    info.close();
+                }
+            });
+            VBox vbox = new VBox(2);
+            vbox.getChildren().addAll(new Label("Neues Auto angelegt."), ok);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.setPadding(new Insets(15));
+            info.setScene(new Scene(vbox));
+            info.show();
+
+            data.fullUpdate();
+            buttonAbbrechen();
 
         } catch (IllegalArgumentException e) {
-        	final Stage dialogStage = new Stage();
+            final Stage dialogStage = new Stage();
             dialogStage.initModality(Modality.WINDOW_MODAL);
 
             Button ok = new Button("OK");
@@ -113,12 +129,13 @@ public class NewCarController implements Initializable {
             });
 
             VBox vbox = new VBox(2);
-            
+
             String message = e.getMessage();
-            
-            if (message.contains("For input"))
-            	message = "Fehlerhafte Eingabe. Bitte die angegebenen Daten ueberpruefen.";
-            
+
+            if (message.contains("For input")) {
+                message = "Fehlerhafte Eingabe. Bitte die angegebenen Daten ueberpruefen.";
+            }
+
             vbox.getChildren().addAll(new Text(message), ok);
             vbox.setAlignment(Pos.CENTER);
             vbox.setPadding(new Insets(15));
@@ -129,14 +146,12 @@ public class NewCarController implements Initializable {
     }
 
     @FXML
-    private void buttonAbbrechen() 
-    {
+    private void buttonAbbrechen() {
         Stage stage = (Stage) abbruch.getScene().getWindow();
-        stage.close(); 
+        stage.close();
     }
-    
-    public void setData(Data data)
-    {
+
+    public void setData(Data data) {
         this.data = data;
     }
 }

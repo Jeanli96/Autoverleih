@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Data.Auto;
 import Data.Data;
 import Data.Vertrag;
 import Data.VertragQuery;
@@ -23,6 +24,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -49,9 +51,9 @@ public class CarInputController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	
-    	kennzeichen.setEditable(false);
-    	vertrag.setEditable(false);
+
+        kennzeichen.setEditable(false);
+        vertrag.setEditable(false);
     }
 
     @FXML
@@ -63,11 +65,12 @@ public class CarInputController implements Initializable {
         ListView listView = new ListView();
 
         Vertrag[] vertraege = data.getCarInput();
+        Auto[] alleAutos = data.getAlleAutos();
         if (vertraege != null) {
             String[] holder = new String[vertraege.length];
 
             for (int i = 0; i < vertraege.length; i++) {
-                holder[i] = "Nr.: " + vertraege[i].getVertragsID() + " | " + vertraege[i].getKennzeichen() + " | " + new VertragQuery().getKundenName(vertraege[i].getKundenID(), data.getPassword());
+                holder[i] = "Nr.: " + vertraege[i].getVertragsID() + " | " + alleAutos[vertraege[i].getAutoID() - 1].getKennzeichen() + " | " + new VertragQuery().getKundenName(vertraege[i].getKundenID());
             }
 
             ObservableList<String> daten = FXCollections.observableArrayList(holder);
@@ -81,13 +84,13 @@ public class CarInputController implements Initializable {
                 int i = listView.getSelectionModel().getSelectedIndex();
 
                 vertrag.setText("" + vertraege[i].getVertragsID());
-                kennzeichen.setText(vertraege[i].getKennzeichen());
+                kennzeichen.setText(alleAutos[vertraege[i].getAutoID() - 1].getKennzeichen());
 
                 DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
                 Calendar c = df.getCalendar();
                 c.setTimeInMillis(System.currentTimeMillis());
                 datum.setText(c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + c.get(Calendar.YEAR));
-                
+
                 c = df.getCalendar();
                 c.setTime(vertraege[i].getRueckgabetermin());
                 abtermin.setText(c.get(Calendar.DAY_OF_MONTH) + "." + (c.get(Calendar.MONTH) + 1) + "." + c.get(Calendar.YEAR));
@@ -120,13 +123,31 @@ public class CarInputController implements Initializable {
 
     @FXML
     private void buttonBestaetigen() {
-        
+
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         Calendar c = df.getCalendar();
-        c.setTimeInMillis(System.currentTimeMillis());                
-        
-        new VertragQuery().editTatAbholtermin(Integer.parseInt(vertrag.getText()), c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.DAY_OF_MONTH));
-        
+        c.setTimeInMillis(System.currentTimeMillis());
+
+        new VertragQuery().editTatRueckgabetermin(Integer.parseInt(vertrag.getText()), c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.DAY_OF_MONTH));
+
+        final Stage info = new Stage();
+        info.initModality(Modality.WINDOW_MODAL);
+        Button ok = new Button("OK");
+        ok.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                info.close();
+            }
+        });
+        VBox vbox = new VBox(2);
+        vbox.getChildren().addAll(new Label("Das Auto wurde zurückgenommen."), ok);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setPadding(new Insets(15));
+        info.setScene(new Scene(vbox));
+        info.show();
+
+        data.fullUpdate();
+
         buttonAbbruch();
     }
 
@@ -135,9 +156,8 @@ public class CarInputController implements Initializable {
         Stage stage = (Stage) abbruch.getScene().getWindow();
         stage.close();
     }
-    
-    public void setData(Data data)
-    {
+
+    public void setData(Data data) {
         this.data = data;
     }
 }

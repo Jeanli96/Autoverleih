@@ -1,6 +1,5 @@
 package GUI;
 
-import Data.Auto;
 import Data.Data;
 import Data.Datenbank;
 import Data.Vertrag;
@@ -19,6 +18,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -61,9 +61,9 @@ public class NewContractController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	
-    	customerNo.setEditable(false);
-    	kennzeichen.setEditable(false);
+
+        customerNo.setEditable(false);
+        kennzeichen.setEditable(false);
     }
 
     @FXML
@@ -125,8 +125,7 @@ public class NewContractController implements Initializable {
         try {
             pDate = Date.valueOf(pickupDate.getValue());
             rDate = Date.valueOf(returnDate.getValue());
-            
-            
+
             data.hasCarTime(kennzeichen.getText(), pDate, rDate);
 
             if (pDate.before(rDate)) {
@@ -137,11 +136,27 @@ public class NewContractController implements Initializable {
                     holder = "kein Eintrag";
                 }
 
-                Vertrag neuerVertrag = new Vertrag(data.getNextVID(), Integer.parseInt(customerNo.getText()), kennzeichen.getText(), holder, pDate, rDate, null, null);
+                Vertrag neuerVertrag = new Vertrag(data.getNextVID(), Integer.parseInt(customerNo.getText()), data.getAutoID(kennzeichen.getText()), holder, pDate, rDate, null, null);
                 new VertragQuery().write(neuerVertrag);
-                
+
                 PDFCreator pdfc = new PDFCreator(neuerVertrag, data);
                 pdfc.ausfuehren();
+
+                final Stage info = new Stage();
+                info.initModality(Modality.WINDOW_MODAL);
+                Button ok = new Button("OK");
+                ok.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent e) {
+                        info.close();
+                    }
+                });
+                VBox vbox = new VBox(2);
+                vbox.getChildren().addAll(new Label("Neuer Vertrag wurde angelegt."), ok);
+                vbox.setAlignment(Pos.CENTER);
+                vbox.setPadding(new Insets(15));
+                info.setScene(new Scene(vbox));
+                info.show();
 
                 data.fullUpdate();
                 buttonAbbruch();
@@ -166,8 +181,8 @@ public class NewContractController implements Initializable {
                 dialogStage.show();
             }
         } catch (IllegalArgumentException e) {
-        	
-        	final Stage dialogStage = new Stage();
+
+            final Stage dialogStage = new Stage();
             dialogStage.initModality(Modality.WINDOW_MODAL);
 
             Button ok = new Button("OK");
@@ -185,7 +200,7 @@ public class NewContractController implements Initializable {
 
             dialogStage.setScene(new Scene(vbox));
             dialogStage.show();
-        
+
         } catch (Exception ex) {
             final Stage dialogStage = new Stage();
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -213,9 +228,8 @@ public class NewContractController implements Initializable {
         Stage stage = (Stage) abbruch.getScene().getWindow();
         stage.close();
     }
-    
-    public void setData(Data data)
-    {
+
+    public void setData(Data data) {
         this.data = data;
     }
 

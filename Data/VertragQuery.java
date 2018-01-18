@@ -68,7 +68,7 @@ public class VertragQuery {
                     if (rs.getString("tat_Rueckgabetermin") != null)
                         trDate = formatter.parse(rs.getString("tat_Rueckgabetermin"));
 
-                    alleVertraege[i] = new Vertrag(rs.getInt("Vertrags_ID"), rs.getInt("KD_ID"), rs.getString("Kennzeichen"), rs.getString("Zweitfahrer"),
+                    alleVertraege[i] = new Vertrag(rs.getInt("Vertrags_ID"), rs.getInt("KD_ID"), rs.getInt("Auto_ID"), rs.getString("Zweitfahrer"),
                             pDate, rDate, tpDate, trDate);
                     //System.out.println(alleVertraege[i].toString());
                 }
@@ -91,12 +91,12 @@ public class VertragQuery {
         return alleVertraege;
     }
 
-    public String getKundenName(int KDID, String uPassword) {
+    public String getKundenName(int KDID) {
 
         String holder = "";
         
         user = "kmangels_ro";
-        password = uPassword;
+        password = "Va7tho9a";
 
         try {
             //System.out.println("* Treiber laden");
@@ -194,6 +194,43 @@ public class VertragQuery {
 
             //System.out.println("* Einfuegen");
             String sqlCommand = "UPDATE Vertraege SET tat_Abholtermin = '" + abholtermin + "' WHERE Vertrags_ID = '" + ID + "';";
+            stmt.executeUpdate(sqlCommand);
+
+            //System.out.println("* Statement beenden");
+            stmt.close();
+
+            //System.out.println("* Datenbank-Verbindung beenden");
+            conn.close();
+        } catch (SQLException sqle) {
+            //System.out.println("SQLException: " + sqle.getMessage());
+            //System.out.println("SQLState: " + sqle.getSQLState());
+            //System.out.println("VendorError: " + sqle.getErrorCode());
+            //sqle.printStackTrace();
+        }
+    }
+    
+    public void editTatRueckgabetermin(int ID, String rueckgabetermin) {
+
+        user = "kmangels";
+        password = "Eid3aih3";
+
+        try {
+            //System.out.println("* Treiber laden");
+            Class.forName("org.gjt.mm.mysql.Driver").newInstance();
+        } catch (Exception e) {
+            System.err.println("Treiber konnte nicht geladen werden.");
+            //e.printStackTrace();
+        }
+        try {
+            //System.out.println("* Verbindung aufbauen");
+            String url = "jdbc:mysql://" + hostname + ":" + port + "/" + dbname;
+            conn = DriverManager.getConnection(url, user, password);
+
+            //System.out.println("* Statement beginnen");
+            Statement stmt = conn.createStatement();
+
+            //System.out.println("* Einfuegen");
+            String sqlCommand = "UPDATE Vertraege SET tat_Rueckgabetermin = '" + rueckgabetermin + "' WHERE Vertrags_ID = '" + ID + "';";
             stmt.executeUpdate(sqlCommand);
 
             //System.out.println("* Statement beenden");
