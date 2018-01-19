@@ -15,7 +15,8 @@ package tests.Auto;
 	@RunWith(Parameterized.class)
 	public class KennzeichenParamTest {
 	    
-		String kennzeichen;
+            int autoID = 4;
+            String kennzeichen;
 	    String marke = "Audi";
 	    int sitzplaetze = 3;
 	    float tagessatz = 20;
@@ -60,7 +61,7 @@ package tests.Auto;
 	    	kennzeichen = fInput;
 	    	String out = new String();
 	    	try{
-	    		Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
+	    		Auto test = new Auto(autoID,kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
 	    	}
 	    	catch (Exception e){
 	    		out = e.getMessage();

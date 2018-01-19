@@ -13,7 +13,7 @@ import Data.Auto;
 public class testAuto{
     
     
-    
+    int autoID;
     String kennzeichen;
     String marke;
     int sitzplaetze;
@@ -27,6 +27,7 @@ public class testAuto{
     @Before 
     public void setup(){
         
+     autoID = 12;
      kennzeichen = "KM-MN-23";
      marke = "Audi" ;
      sitzplaetze = 5;
@@ -35,7 +36,7 @@ public class testAuto{
      typ = "Limousine";
      farbe = "Blau";
      maengel = "Keine Mängel";
-     testauto = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
+     testauto = new Auto(autoID, kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
 }
   
                 
@@ -48,7 +49,7 @@ public class testAuto{
         String expected = "Das angegebene Kennzeichen ist zu kurz.";
         String test_erg =  new String();
         try{
-        Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
+        Auto test = new Auto(autoID, kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
         }
         catch (Exception e)
         {
@@ -70,7 +71,7 @@ public class testAuto{
           String expected = "Das angegebene Kennzeichen ist zu lang.";
           String test_erg =  new String();
           try{
-          Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
+          Auto test = new Auto(autoID, kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
           }
           catch (Exception e)
           {
@@ -95,7 +96,7 @@ public class testAuto{
         String test_erg = new String();
         String expected = "Die Sitzzahl darf nicht unter 1 liegen.";
         try{        
-        Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
+        Auto test = new Auto(autoID,kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
         }
         catch (Exception e)
         {
@@ -118,7 +119,7 @@ public class testAuto{
          String test_erg = new String();
          String expected = "Die Sitzzahl darf nicht ueber 7 liegen.";
          try{        
-         Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
+         Auto test = new Auto(autoID, kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
          }
          catch (Exception e)
          {
@@ -141,7 +142,7 @@ public class testAuto{
         String test_erg = new String();
         String expected = "Der Tagessatz darf nicht mehr als 2 Nachkommastellen haben.";
         try{        
-        Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
+        Auto test = new Auto(autoID, kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
         }
         catch (Exception e)
         {
@@ -162,7 +163,7 @@ public class testAuto{
         String test_erg = new String();
         String expected = "";
         try{        
-        Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
+        Auto test = new Auto(autoID, kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
         }
         catch (Exception e)
         {
@@ -274,7 +275,7 @@ public class testAuto{
          String expected = "Der Tagessatz darf nicht unter 0 liegen.";
          String test_erg =  new String();
          try{
-         Auto test = new Auto(kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
+         Auto test = new Auto(autoID, kennzeichen, marke, sitzplaetze, tagessatz, modell, typ, farbe, maengel);
          }
          catch (Exception e)
          {
