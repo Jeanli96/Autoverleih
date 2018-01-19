@@ -20,7 +20,7 @@ public class testVertrag {
     
     private int vertragsID;
     private int kdID;
-    private String kennzeichen;
+    private int autoID;
     private String zFahrer;
     private Date abholtermin;
     private Date ruecktermin;
@@ -34,13 +34,13 @@ public class testVertrag {
     
     vertragsID = 3;
     kdID = 2;
-    kennzeichen = "I-F-15";
+    autoID = 5;
     zFahrer = "Peter";
     abholtermin = new Date(07,01,2018);
     ruecktermin = new Date(17,01,2018);
     tatAbholtermin = new Date(07,01,2018);
     tatRuecktermin = new Date(18,01,2018);
-    testvertrag = new Vertrag(vertragsID,kdID,kennzeichen,zFahrer,abholtermin,ruecktermin,tatAbholtermin,tatRuecktermin);
+    testvertrag = new Vertrag(vertragsID,kdID,autoID,zFahrer,abholtermin,ruecktermin,tatAbholtermin,tatRuecktermin);
     
     
            
@@ -77,13 +77,13 @@ public class testVertrag {
     
      /** Test für getKennzeichen, String **/
       @Test
-    public void tVertrag_get_kennzeichen(){
+    public void tVertrag_get_autoID(){
     
           
-        String test_erg = new String(testvertrag.getKennzeichen());
+        int test_erg = testvertrag.getAutoID();
                
         
-        Assert.assertTrue(test_erg.equals(kennzeichen) );
+        Assert.assertTrue(autoID == test_erg) ;
         setup();
    }
     
