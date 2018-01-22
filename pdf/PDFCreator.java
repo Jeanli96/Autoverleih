@@ -10,10 +10,10 @@ import Data.Vertrag;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
+//import org.apache.pdfbox.pdmodel.PDDocument;
+//import org.apache.pdfbox.pdmodel.PDPage;
+//import org.apache.pdfbox.pdmodel.PDPageContentStream;
+//import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /**
  *
@@ -45,7 +45,7 @@ public class PDFCreator {
         String modell = data.getAuto(kfz).getModell();
         
         
-      File file = new File("Vertrag.pdf");
+      /*File file = new File("Vertrag.pdf");
       PDDocument document = PDDocument.load(file);
      
       
@@ -111,6 +111,6 @@ public class PDFCreator {
       document.save(new File("Vertrag_"+vertragsnr+".pdf"));
 
      
-      document.close();
+      document.close();*/
    }
 }

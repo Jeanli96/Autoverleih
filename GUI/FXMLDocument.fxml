@@ -95,13 +95,7 @@
                                             <Button fx:id="carDelete" layoutX="36.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Löschen" />
                                           </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutY="274.0" prefHeight="59.0" prefWidth="200.0">
-                                          <children>
-                                            <Label alignment="CENTER" layoutX="14.0" layoutY="-2.0" prefHeight="36.0" prefWidth="160.0" text="Verfügbar in dennächsten 14 Tagen" textAlignment="CENTER" wrapText="true" />
-                                            <CheckBox fx:id="available" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#sort" prefHeight="17.0" prefWidth="39.0" text="Ja" />
-                                            <CheckBox fx:id="notAvailable" layoutX="100.0" layoutY="33.0" mnemonicParsing="false" onAction="#sort" text="Nein" />
-                                          </children>
-                                        </AnchorPane>
+                                        <AnchorPane layoutY="274.0" prefHeight="59.0" prefWidth="200.0" />
                                       </children>
                                     </AnchorPane>
                                   </content>
@@ -145,12 +139,7 @@
                                             <TextField layoutX="26.0" layoutY="35.0" />
                                           </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutY="285.0" prefHeight="94.8" prefWidth="200.0">
-                                          <children>
-                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Kundennummer" />
-                                            <TextField layoutX="26.0" layoutY="35.0" />
-                                          </children>
-                                        </AnchorPane>
+                                        <AnchorPane layoutY="285.0" prefHeight="94.8" prefWidth="200.0" />
                                         <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
                                           <children>
                                             <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Kundenummer" />
@@ -215,6 +204,7 @@
                                         <AnchorPane layoutY="285.0" prefHeight="94.8" prefWidth="200.0">
                                           <children>
                                             <Button fx:id="buttonNewContract" layoutX="36.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Neu anlegen" />
+                                                                  <Button fx:id="buttonEditContract" layoutX="36.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Bearbeiten" />
                                           </children>
                                         </AnchorPane>
                                         <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
@@ -235,7 +225,6 @@
                                             <TextField layoutX="26.0" layoutY="35.0" />
                                           </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutY="380.0" prefHeight="94.8" prefWidth="200.0" />
                                       </children>
                                     </AnchorPane>
                                   </content>

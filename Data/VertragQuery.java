@@ -245,4 +245,42 @@ public class VertragQuery {
             //sqle.printStackTrace();
         }
     }
+    
+    public void edit(Vertrag vertrag) {
+
+        user = "kmangels";
+        password = "Eid3aih3";
+
+        try {
+            //System.out.println("* Treiber laden");
+            Class.forName("org.gjt.mm.mysql.Driver").newInstance();
+        } catch (Exception e) {
+            System.err.println("Treiber konnte nicht geladen werden.");
+            //e.printStackTrace();
+        }
+        try {
+            //System.out.println("* Verbindung aufbauen");
+            String url = "jdbc:mysql://" + hostname + ":" + port + "/" + dbname;
+            conn = DriverManager.getConnection(url, user, password);
+
+            //System.out.println("* Statement beginnen");
+            Statement stmt = conn.createStatement();
+
+            //System.out.println("* Einfuegen");
+            String sqlCommand = "UPDATE Vertraege SET KD_ID = '" + vertrag.getKundenID() + "', Auto_ID = '" + vertrag.getAutoID() + "', Zweitfahrer = '" + vertrag.getZweitfahrer() + "', Abholtermin = '" + vertrag.getAbholtermin() + "', Rueckgabetermin = '" + vertrag.getRueckgabetermin() + "' WHERE Vertrags_ID = '" + vertrag.getVertragsID() + "';";
+            System.out.println(sqlCommand);
+            stmt.executeUpdate(sqlCommand);
+
+            //System.out.println("* Statement beenden");
+            stmt.close();
+
+            //System.out.println("* Datenbank-Verbindung beenden");
+            conn.close();
+        } catch (SQLException sqle) {
+            //System.out.println("SQLException: " + sqle.getMessage());
+            //System.out.println("SQLState: " + sqle.getSQLState());
+            //System.out.println("VendorError: " + sqle.getErrorCode());
+            //sqle.printStackTrace();
+        }
+    }
 }

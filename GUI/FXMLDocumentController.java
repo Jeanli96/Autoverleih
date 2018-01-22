@@ -59,7 +59,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button buttonNewCustomer;
     @FXML
-    private Button buttonNewContract;
+    private Button buttonNewContract, buttonEditContract;
     @FXML
     private Button carDelete;
     @FXML
@@ -70,8 +70,6 @@ public class FXMLDocumentController implements Initializable {
     private CheckBox ascending, descending;
     @FXML
     private CheckBox kleinwagen, van, kombi, transporter, limousine;
-    @FXML
-    private CheckBox available, notAvailable;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -112,17 +110,16 @@ public class FXMLDocumentController implements Initializable {
             new CarOutputStage(data);
         } else if (event.getSource() == cari) {
             new CarInputStage(data);
+        } else if (event.getSource() == buttonEditContract) {
+            int i = list3.getSelectionModel().getSelectedIndex();
+            new EditContractStage(data, data.getVertrag(i, false));
         }
     }
 
     @FXML
     public void sort(ActionEvent event) {
 
-        if (event.getSource() == available) {
-            notAvailable.setSelected(false);
-        } else if (event.getSource() == notAvailable) {
-            available.setSelected(false);
-        } else if (event.getSource() == ascending) {
+        if (event.getSource() == ascending) {
             descending.setSelected(false);
         } else if (event.getSource() == descending) {
             ascending.setSelected(false);

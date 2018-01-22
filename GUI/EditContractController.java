@@ -7,6 +7,8 @@ import Data.Vertrag;
 import Data.VertragQuery;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,7 +40,7 @@ import pdf.PDFCreator;
  *
  * @author Dennis Jungmichel
  */
-public class NewContractController implements Initializable {
+public class EditContractController implements Initializable {
 
     @FXML
     private Button anlegen;
@@ -48,6 +50,7 @@ public class NewContractController implements Initializable {
     private Button carList, customerList;
 
     private Data data;
+    private Vertrag vertrag;
     private Auto selectedAuto = null;
 
     @FXML
@@ -129,7 +132,7 @@ public class NewContractController implements Initializable {
             pDate = Date.valueOf(pickupDate.getValue());
             rDate = Date.valueOf(returnDate.getValue());
 
-            data.hasCarTime(selectedAuto.getAutoID(), pDate, rDate, null);
+            data.hasCarTime(selectedAuto.getAutoID(), pDate, rDate, vertrag);
 
             if (pDate.before(rDate)) {
                 String holder;
@@ -139,10 +142,10 @@ public class NewContractController implements Initializable {
                     holder = "kein Eintrag";
                 }
 
-                Vertrag neuerVertrag = new Vertrag(data.getNextVID(), Integer.parseInt(customerNo.getText()), data.getAutoID(kennzeichen.getText()), holder, pDate, rDate, null, null);
-                new VertragQuery().write(neuerVertrag);
+                vertrag = new Vertrag(vertrag.getVertragsID(), Integer.parseInt(customerNo.getText()), data.getAutoID(kennzeichen.getText()), holder, pDate, rDate, vertrag.getTatAbholtermin(), vertrag.getTatRueckgabetermin());
+                new VertragQuery().edit(vertrag);
 
-                PDFCreator pdfc = new PDFCreator(neuerVertrag, data);
+                PDFCreator pdfc = new PDFCreator(vertrag, data);
                 pdfc.ausfuehren();
 
                 final Stage info = new Stage();
@@ -155,7 +158,7 @@ public class NewContractController implements Initializable {
                     }
                 });
                 VBox vbox = new VBox(2);
-                vbox.getChildren().addAll(new Label("Neuer Vertrag wurde angelegt."), ok);
+                vbox.getChildren().addAll(new Label("Vertrag wurde geändert."), ok);
                 vbox.setAlignment(Pos.CENTER);
                 vbox.setPadding(new Insets(15));
                 info.setScene(new Scene(vbox));
@@ -232,8 +235,25 @@ public class NewContractController implements Initializable {
         stage.close();
     }
 
-    public void setData(Data data) {
+    public void setData(Data data, Vertrag vertrag) {
         this.data = data;
+        this.vertrag = vertrag;
+        
+        selectedAuto = data.getAuto(vertrag.getAutoID()-1, true);
+        
+        load();
     }
-
+    
+    private void load()
+    {
+        LocalDate date = vertrag.getAbholtermin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        pickupDate.setValue(date);
+        
+        date = vertrag.getRueckgabetermin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        returnDate.setValue(date);
+        
+        customerNo.setText("" + vertrag.getVertragsID());
+        secondDriver.setText(vertrag.getZweitfahrer());
+        kennzeichen.setText(data.getAuto(vertrag.getAutoID()-1, true).getKennzeichen());
+    }
 }

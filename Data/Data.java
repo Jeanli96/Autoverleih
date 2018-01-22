@@ -12,6 +12,9 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -107,16 +110,21 @@ public class Data {
         return finishedAutos;
     }
 
-    public void hasCarTime(String kennzeichen, Date pDate, Date rDate) throws IllegalArgumentException {
+    public void hasCarTime(int autoID, Date pDate, Date rDate, Vertrag vertrag) throws IllegalArgumentException {
         boolean hold = true;
+        
+        if (vertrag == null)
+            vertrag = new Vertrag();
 
         for (int i = 0; i < alleVertraege.length; i++) {
-            if (alleAutos[alleVertraege[i].getAutoID() - 1].getKennzeichen().equals(kennzeichen)) {
+            if (alleAutos[alleVertraege[i].getAutoID() - 1].getAutoID() == autoID) {
                 if (pDate.before(alleVertraege[i].getRueckgabetermin()) && pDate.after(alleVertraege[i].getAbholtermin())) {
-                    hold = false;
+                    if (vertrag.getVertragsID() != alleVertraege[i].getVertragsID())
+                        hold = false;
                 }
                 if (rDate.before(alleVertraege[i].getRueckgabetermin()) && rDate.after(alleVertraege[i].getAbholtermin())) {
-                    hold = false;
+                    if (vertrag.getVertragsID() != alleVertraege[i].getVertragsID())
+                        hold = false;
                 }
 
                 if (!hold) {
@@ -326,12 +334,16 @@ public class Data {
             if (vertrag.getRueckgabetermin().after(currentDate)) {
                 return "(Auto ausgeliehen)";
             } else {
-                return "(Rückgabe: )" + vertrag.getRueckgabetermin();
+                LocalDate date = vertrag.getRueckgabetermin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                return "(Rückgabe: )" + date.format(formatter);
             }
         } else if (vertrag.getAbholtermin().after(currentDate)) {
             return "(Offen)";
         } else {
-            return "(Abholung: ) " + vertrag.getAbholtermin();
+            LocalDate date = vertrag.getAbholtermin().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            return "(Abholung: ) " + date.format(formatter);
         }
     }
 

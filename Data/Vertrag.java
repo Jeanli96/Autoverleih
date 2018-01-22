@@ -22,6 +22,18 @@ public class Vertrag {
     private Date tatAbholtermin;
     private Date tatRuecktermin;
     
+    public Vertrag()
+    {
+        this.vertragsID = -1;
+        this.kdID = 0;
+        this.autoID = 0;
+        this.zFahrer  = null;
+        this.abholtermin = null;
+        this.ruecktermin = null;
+        this.tatAbholtermin = null;
+        this.tatRuecktermin = null; 
+    }
+    
 
     public Vertrag(int vertragsID, int kdID, int autoID, String zFahrer, Date abholtermin, Date ruecktermin, Date tatAbholtermin, Date tatRuecktermin) 
     {
