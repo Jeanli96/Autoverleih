@@ -9,8 +9,6 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -268,7 +266,6 @@ public class VertragQuery {
 
             //System.out.println("* Einfuegen");
             String sqlCommand = "UPDATE Vertraege SET KD_ID = '" + vertrag.getKundenID() + "', Auto_ID = '" + vertrag.getAutoID() + "', Zweitfahrer = '" + vertrag.getZweitfahrer() + "', Abholtermin = '" + vertrag.getAbholtermin() + "', Rueckgabetermin = '" + vertrag.getRueckgabetermin() + "' WHERE Vertrags_ID = '" + vertrag.getVertragsID() + "';";
-            System.out.println(sqlCommand);
             stmt.executeUpdate(sqlCommand);
 
             //System.out.println("* Statement beenden");
