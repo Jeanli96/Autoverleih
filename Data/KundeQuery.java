@@ -42,7 +42,7 @@ public class KundeQuery {
             Statement stmt = conn.createStatement();
 
             //System.out.println("* Anzahl der Zeilen bekommen --> alleKunden dimensionieren");
-            String sqlCount= "SELECT COUNT(*) FROM Kunde" + sqlCommand;
+            String sqlCount = "SELECT COUNT(*) FROM Kunde" + sqlCommand;
             ResultSet rs = stmt.executeQuery(sqlCount);
             if (rs.next()) {
                 alleKunden = new Kunde[rs.getInt(1)];
@@ -107,6 +107,42 @@ public class KundeQuery {
             //System.out.println("SQLState: " + sqle.getSQLState());
             //System.out.println("VendorError: " + sqle.getErrorCode());
             //sqle.printStackTrace();
+        }
+    }
+
+    public void edit(Kunde kunde, String password) {
+
+        user = "kmangels";
+        this.password = password;
+
+        try {
+            System.out.println("* Treiber laden");
+            Class.forName("org.gjt.mm.mysql.Driver").newInstance();
+        } catch (Exception e) {
+            System.err.println("Treiber konnte nicht geladen werden.");
+            e.printStackTrace();
+        }
+        try {
+            //System.out.println("* Verbindung aufbauen");
+            String url = "jdbc:mysql://" + hostname + ":" + port + "/" + dbname;
+            conn = DriverManager.getConnection(url, user, password);
+
+            //System.out.println("* Statement beginnen");
+            Statement stmt = conn.createStatement();
+
+            //System.out.println("* Einfuegen");
+            String sqlCommand = "UPDATE Kunde SET Name = '" + kunde.getName() + "', Vorname = '" + kunde.getVorname() + "', PLZ = '" + kunde.getPlz() + "', Strasse = '" + kunde.getStrasse() + "', Hausnummer = '" + kunde.getHausnummer() + "', Wohnort = '" + kunde.getWohnort() + "', Telefonnummer = '" + kunde.getTelefonnummer() + "', Geburtsdatum = '" + kunde.getGeburtsdataum() + "', FKlasse = '" + kunde.getFKlasse() + "' WHERE KDID = '" + kunde.getKdID() + "';";
+            stmt.executeUpdate(sqlCommand);
+            //System.out.println("* Statement beenden");
+            stmt.close();
+
+            //System.out.println("* Datenbank-Verbindung beenden");
+            conn.close();
+        } catch (SQLException sqle) {
+            System.out.println("SQLException: " + sqle.getMessage());
+            System.out.println("SQLState: " + sqle.getSQLState());
+            System.out.println("VendorError: " + sqle.getErrorCode());
+            sqle.printStackTrace();
         }
     }
 }
