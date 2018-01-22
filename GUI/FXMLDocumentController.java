@@ -10,6 +10,8 @@ import Data.AutoQuery;
 import Data.Data;
 import Data.Datenbank;
 import static Data.Datenbank.AUTO;
+import static Data.Datenbank.KUNDE;
+import static Data.Datenbank.VERTRAG;
 import Data.Stream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,6 +32,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -70,6 +73,10 @@ public class FXMLDocumentController implements Initializable {
     private CheckBox ascending, descending;
     @FXML
     private CheckBox kleinwagen, van, kombi, transporter, limousine;
+    @FXML
+    private TextField customerVorname, customerNachname, customerKundenNr;
+    @FXML
+    private TextField contractID, contractCustomerID;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -82,7 +89,7 @@ public class FXMLDocumentController implements Initializable {
         } else if (event.getSource() == carDelete) {
             int i = list1.getSelectionModel().getSelectedIndex();
             Auto holder = data.getAuto(i, false);
-            
+
             final Stage info = new Stage();
             info.initModality(Modality.WINDOW_MODAL);
             Button ok = new Button("OK");
@@ -98,7 +105,7 @@ public class FXMLDocumentController implements Initializable {
             vbox.setPadding(new Insets(15));
             info.setScene(new Scene(vbox));
             info.show();
-            
+
             holder.deleteKennzeichen();
             new AutoQuery().edit(holder);
             data.fullUpdate();
@@ -113,11 +120,85 @@ public class FXMLDocumentController implements Initializable {
         } else if (event.getSource() == buttonEditContract) {
             int i = list3.getSelectionModel().getSelectedIndex();
             new EditContractStage(data, data.getVertrag(i, false));
-        } else if (event.getSource() == buttonEditCustomer)
-        {
+        } else if (event.getSource() == buttonEditCustomer) {
             int i = list2.getSelectionModel().getSelectedIndex();
             new EditCustomerStage(data, data.getKunde(i, false));
         }
+    }
+
+    @FXML
+    public void sortContract(ActionEvent event) {
+        String substring1 = "";
+        String substring2 = "";
+        String sqlCommand = "";
+        String subCommand = "";
+
+        if (contractID.getText() != null && contractID.getText().length() > 0) {
+            substring1 = " Vertrags_ID = \"" + contractID.getText() + "\"";
+        }
+
+        if (contractCustomerID.getText() != null && contractCustomerID.getText().length() > 0) {
+            substring2 = " KD_ID = \"" + contractCustomerID.getText() + "\"";
+        }
+        
+        subCommand += substring1;
+
+        if (substring1.length() > 0 && substring2.length() > 0) {
+            subCommand += " AND" + substring2;
+        } else {
+            subCommand += substring2;
+        }
+        
+        if (subCommand.length() > 0) {
+            sqlCommand += " WHERE" + subCommand;
+        }
+        
+        System.out.println(sqlCommand);
+        data.update(VERTRAG, sqlCommand);
+    }
+
+    @FXML
+    public void sortCustomer(ActionEvent event) {
+
+        String substring1 = "";
+        String substring2 = "";
+        String substring3 = "";
+        String sqlCommand = "";
+        String subCommand = "";
+
+        if (customerKundenNr.getText() != null && customerKundenNr.getText().length() > 0) {
+            substring1 = " KDID = " + customerKundenNr.getText();
+        }
+
+        if (customerVorname.getText() != null && customerVorname.getText().length() > 0) {
+            substring2 = " Vorname = \"" + customerVorname.getText() + "\"";
+        }
+
+        if (customerNachname.getText() != null && customerNachname.getText().length() > 0) {
+            substring3 = " Name = \"" + customerNachname.getText() + "\"";
+        }
+
+        subCommand += substring1;
+
+        if (substring1.length() > 0 && substring2.length() > 0) {
+            subCommand += " AND" + substring2;
+        } else {
+            subCommand += substring2;
+        }
+
+        if (substring2.length() > 0 && substring3.length() > 0) {
+            subCommand += " AND" + substring3;
+        } else if (substring1.length() > 0 && substring3.length() > 0) {
+            subCommand += " AND" + substring3;
+        } else {
+            subCommand += substring3;
+        }
+
+        if (subCommand.length() > 0) {
+            sqlCommand += " WHERE" + subCommand;
+        }
+
+        data.update(KUNDE, sqlCommand);
     }
 
     @FXML

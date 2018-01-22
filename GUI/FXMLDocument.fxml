@@ -136,20 +136,23 @@
                                         <AnchorPane prefHeight="94.8" prefWidth="200.0">
                                           <children>
                                             <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Vorname" />
-                                            <TextField layoutX="26.0" layoutY="35.0" />
+                                            <TextField fx:id="customerVorname" layoutX="26.0" layoutY="35.0" />
                                           </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutY="285.0" prefHeight="94.8" prefWidth="200.0" />
+                                        <AnchorPane layoutY="285.0" prefHeight="94.8" prefWidth="200.0">
+                                                               <children>
+                                                                  <Button layoutX="36.0" layoutY="7.0" mnemonicParsing="false" onAction="#sortCustomer" prefHeight="36.0" prefWidth="129.0" text="Suche" />
+                                                               </children></AnchorPane>
                                         <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
                                           <children>
                                             <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Kundenummer" />
-                                            <TextField layoutX="26.0" layoutY="35.0" />
+                                            <TextField fx:id="customerKundenNr" layoutX="26.0" layoutY="35.0" />
                                           </children>
                                         </AnchorPane>
                                         <AnchorPane layoutY="95.0" prefHeight="94.8" prefWidth="200.0">
                                           <children>
                                             <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Nachname" />
-                                            <TextField layoutX="26.0" layoutY="35.0" />
+                                            <TextField fx:id="customerNachname" layoutX="26.0" layoutY="35.0" />
                                           </children>
                                         </AnchorPane>
                                         <AnchorPane layoutY="333.0" prefHeight="147.0" prefWidth="200.0">
@@ -198,7 +201,7 @@
                                         <AnchorPane prefHeight="94.8" prefWidth="200.0">
                                           <children>
                                             <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Vertragsnummer" />
-                                            <TextField layoutX="26.0" layoutY="35.0" />
+                                            <TextField fx:id="contractID" layoutX="26.0" layoutY="35.0" />
                                           </children>
                                         </AnchorPane>
                                         <AnchorPane layoutY="285.0" prefHeight="94.8" prefWidth="200.0">
@@ -207,24 +210,14 @@
                                                                   <Button fx:id="buttonEditContract" layoutX="36.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Bearbeiten" />
                                           </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0">
+                                        <AnchorPane layoutY="190.0" prefHeight="94.8" prefWidth="200.0" />
+                                        <AnchorPane layoutX="-4.0" layoutY="66.0" prefHeight="94.8" prefWidth="200.0">
                                           <children>
-                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Abgeschlossen" />
-                                            <RadioButton layoutX="22.0" layoutY="25.0" mnemonicParsing="false" selected="true" text="Ja">
-                                              <toggleGroup>
-                                                <ToggleGroup fx:id="Abgeschlossen" />
-                                              </toggleGroup>
-                                            </RadioButton>
-                                            <RadioButton layoutX="22.0" layoutY="48.0" mnemonicParsing="false" text="Nein" toggleGroup="$Abgeschlossen" />
-                                            <RadioButton layoutX="22.0" layoutY="73.0" mnemonicParsing="false" text="Laufend" toggleGroup="$Abgeschlossen" />
+                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Kunden ID" />
+                                            <TextField fx:id="contractCustomerID" layoutX="29.0" layoutY="35.0" />
                                           </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutY="95.0" prefHeight="94.8" prefWidth="200.0">
-                                          <children>
-                                            <Label alignment="CENTER" prefHeight="17.0" prefWidth="200.0" text="Umsatz" />
-                                            <TextField layoutX="26.0" layoutY="35.0" />
-                                          </children>
-                                        </AnchorPane>
+                                                            <Button layoutX="34.0" layoutY="149.0" mnemonicParsing="false" onAction="#sortContract" prefHeight="36.0" prefWidth="129.0" text="Suche" />
                                       </children>
                                     </AnchorPane>
                                   </content>
