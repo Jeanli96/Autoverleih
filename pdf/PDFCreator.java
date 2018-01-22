@@ -5,15 +5,16 @@
  */
 package pdf;
 
+import Data.Auto;
 import Data.Data;
 import Data.Vertrag;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-//import org.apache.pdfbox.pdmodel.PDDocument;
-//import org.apache.pdfbox.pdmodel.PDPage;
-//import org.apache.pdfbox.pdmodel.PDPageContentStream;
-//import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /**
  *
@@ -30,21 +31,24 @@ public class PDFCreator {
         this.data = data;
     }
     
-    public void ausfuehren() throws IOException 
+    public void ausfuehren() 
     {
         String name = data.getKunde(vertrag.getKundenID()-1, true).getName();
         String vorname = data.getKunde(vertrag.getKundenID()-1, true).getVorname();
         int kundenid = vertrag.getKundenID();
-        String kfz = data.getAuto(vertrag.getAutoID()-1, true).getKennzeichen();
+        
+        Auto auto = data.getAuto(vertrag.getAutoID()-1, true);
+        
+        String kfz = auto.getKennzeichen();
         String zweitfahrer = vertrag.getZweitfahrer();
-        float tagessatz = data.getAuto(kfz).getTagessatz();
+        float tagessatz = auto.getTagessatz();
         Date abholtermin = vertrag.getAbholtermin();
         Date ruecktermin = vertrag.getRueckgabetermin();
         int vertragsnr = vertrag.getVertragsID();
-        String marke = data.getAuto(kfz).getMarke();
-        String modell = data.getAuto(kfz).getModell();
+        String marke = auto.getMarke();
+        String modell = auto.getModell();       
         
-        
+      try {
       File file = new File("Vertrag.pdf");
       PDDocument document = PDDocument.load(file);
      
@@ -112,5 +116,9 @@ public class PDFCreator {
 
      
       document.close();
+      } catch (IOException e)
+      {
+          e.printStackTrace();
+      }
    }
 }
