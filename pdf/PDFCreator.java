@@ -35,7 +35,7 @@ public class PDFCreator {
         String name = data.getKunde(vertrag.getKundenID()-1, true).getName();
         String vorname = data.getKunde(vertrag.getKundenID()-1, true).getVorname();
         int kundenid = vertrag.getKundenID();
-        String kfz = data.getKennzeichen(vertrag.getAutoID()-1, true);
+        String kfz = data.getAuto(vertrag.getAutoID()-1, true).getKennzeichen();
         String zweitfahrer = vertrag.getZweitfahrer();
         float tagessatz = data.getAuto(kfz).getTagessatz();
         Date abholtermin = vertrag.getAbholtermin();
@@ -45,7 +45,7 @@ public class PDFCreator {
         String modell = data.getAuto(kfz).getModell();
         
         
-      /*File file = new File("Vertrag.pdf");
+      File file = new File("Vertrag.pdf");
       PDDocument document = PDDocument.load(file);
      
       
@@ -111,6 +111,6 @@ public class PDFCreator {
       document.save(new File("Vertrag_"+vertragsnr+".pdf"));
 
      
-      document.close();*/
+      document.close();
    }
 }
