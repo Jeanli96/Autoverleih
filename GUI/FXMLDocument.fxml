@@ -155,7 +155,7 @@
                                         <AnchorPane layoutY="333.0" prefHeight="147.0" prefWidth="200.0">
                                           <children>
                                             <Button fx:id="buttonNewCustomer" layoutX="36.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Neu anlegen" />
-                                            <Button layoutX="36.0" layoutY="85.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" text="Bearbeiten" />
+                                            <Button fx:id="buttonEditCustomer" layoutX="36.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="129.0" text="Bearbeiten" />
                                           </children>
                                         </AnchorPane>
                                       </children>

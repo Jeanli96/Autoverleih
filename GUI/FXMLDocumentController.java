@@ -57,7 +57,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button carEdit, carb, cari;
     @FXML
-    private Button buttonNewCustomer;
+    private Button buttonNewCustomer, buttonEditCustomer;
     @FXML
     private Button buttonNewContract, buttonEditContract;
     @FXML
@@ -113,6 +113,10 @@ public class FXMLDocumentController implements Initializable {
         } else if (event.getSource() == buttonEditContract) {
             int i = list3.getSelectionModel().getSelectedIndex();
             new EditContractStage(data, data.getVertrag(i, false));
+        } else if (event.getSource() == buttonEditCustomer)
+        {
+            int i = list2.getSelectionModel().getSelectedIndex();
+            new EditCustomerStage(data, data.getKunde(i, false));
         }
     }
 
